@@ -8,6 +8,7 @@ public class Route {
     
     private ArrayList<GenericStation> stations;
     
+    //Constructor
     public Route()
     {
         stations = new ArrayList<GenericStation>();
@@ -20,7 +21,19 @@ public class Route {
     
     public void AddStationToRoute(GenericStation genericStation)
     {
-        this.stations.add(genericStation);
+        stations.add(genericStation);
+    }
+    
+    // Returns the total number of stations/nodes in the route
+    public int TotalNumberOfStationsInRoute()
+    {
+        return stations.size();
+    }
+    
+    // Returns the required number of stations/nodes to finish the route
+    public int StationsFromDestination(GenericStation s)
+    {
+        return (stations.size()-1) - stations.indexOf(s);   
     }
     
     
