@@ -1,6 +1,6 @@
 package Buddy;
 
-public class GenericStation
+public abstract class GenericStation
 {
     protected String name;
     protected String id; 
