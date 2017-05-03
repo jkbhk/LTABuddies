@@ -3,12 +3,14 @@ package Buddy;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.*;
 
 public class GenericFileReader 
 {
-    public void ReadBusStopCode()
+    public ArrayList<BusStation> ReadBusStopCode()
     {
-        String filePath = "/lta-bus_stop_codes.csv";
+        ArrayList<BusStation> allBusStations = new ArrayList<BusStation>();
+        String filePath = "Data/lta-bus_stop_codes.csv";
         BufferedReader buffer = null;
         String line = "";
         String delimiter = ",";
@@ -21,14 +23,21 @@ public class GenericFileReader
             {
                 String[] busStop = line.split(delimiter);
                 
-                System.out.println("Bus Stop Code: " + busStop[0] + 
-                        "\nBusRoute: " + busStop[1] +
-                        "\nBusDesc:" + busStop[2]);
+                if(busStop[0].contains("BUS_CODE"))
+                {
+                    continue;
+                }
+                
+                allBusStations.add(new BusStation(busStop[2], busStop[0], busStop[1]));
+                
+//                System.out.println("Bus Stop Code: " + busStop[0] + 
+//                        "\nBusRoute: " + busStop[1] +
+//                        "\nBusDesc:" + busStop[2] + "\n");
             }
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            //e.printStackTrace();
             System.out.println("Error");
         }
         finally
@@ -45,5 +54,7 @@ public class GenericFileReader
                 }
             }
         }
+        
+        return allBusStations;
     }
 }
