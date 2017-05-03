@@ -10,6 +10,7 @@ public class Service {
     
     public Service(String serviceCode, ArrayList<Route> route)
     {
+        route = new ArrayList<>();
         this.serviceCode = serviceCode;
         this.route = route;
     }

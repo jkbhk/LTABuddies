@@ -11,7 +11,7 @@ public class Route {
     //Constructor
     public Route()
     {
-        stations = new ArrayList<GenericStation>();
+        stations = new ArrayList<>();
     }
     
     public ArrayList<GenericStation> GetStationsInRoute()

@@ -31,8 +31,4 @@ public abstract class GenericStation
         this.id = id;
     }
     
-    
-    
-    
-    
 }
