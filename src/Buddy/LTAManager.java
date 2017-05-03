@@ -19,7 +19,7 @@ public class LTAManager
 //          System.out.println(allBusStations.get(1).GetID());
         }
         
-
+        
         System.out.println(stationHashmap.get("LEIS9").GetName());
     }
 }

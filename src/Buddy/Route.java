@@ -6,22 +6,26 @@ import java.util.ArrayList;
 
 public class Route {
     
-    private ArrayList<GenericStation> stations;
-    
+
+            
+    private ArrayList<StationToDistRef> stations;
+            
     //Constructor
     public Route()
     {
-        stations = new ArrayList<GenericStation>();
+        stations = new ArrayList<>();
     }
     
-    public ArrayList<GenericStation> GetStationsInRoute()
+    public ArrayList<StationToDistRef> GetStationsToDistRef()
     {
         return this.stations;
     }
     
-    public void AddStationToRoute(GenericStation genericStation)
+    
+    
+    public void AddStationToRef(StationToDistRef obj)
     {
-        stations.add(genericStation);
+        stations.add(obj);
     }
     
     // Returns the total number of stations/nodes in the route
