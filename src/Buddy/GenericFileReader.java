@@ -13,9 +13,6 @@ public class GenericFileReader
     private String line = "";
     private BufferedReader buffer;
     
-    
-    
-    
     public ArrayList<BusStation> ReadBusStopCode()
     {
         ArrayList<BusStation> allBusStations = new ArrayList<>();
@@ -34,16 +31,12 @@ public class GenericFileReader
                 }
                 
                 allBusStations.add(new BusStation(busStop[2], busStop[0], busStop[1]));
-                
-//                System.out.println("Bus Stop Code: " + busStop[0] + 
-//                        "\nBusRoute: " + busStop[1] +
-//                        "\nBusDesc:" + busStop[2] + "\n");
             }
         }
         catch (Exception e)
         {
             //e.printStackTrace();
-            System.out.println("Error");
+            System.out.println("Bus Station Error");
         }
         finally
         {
@@ -63,9 +56,11 @@ public class GenericFileReader
         return allBusStations;
     }
     
-     public ArrayList<Route> ReadRouteCode()
+    public ArrayList<StationRouteInfo> ReadRouteInfoCode()
     {
-        ArrayList<Route> allRoutes = new ArrayList<>();
+        ArrayList<StationRouteInfo> allRouteInfo = new ArrayList<>();
+        
+        int offset = 0;
         
         try
         {
@@ -80,15 +75,29 @@ public class GenericFileReader
                     continue;
                 }
                 
-                //TO DO
-                //myStrArr.add(new Route(myStrArr[2], myStrArr[0], myStrArr[1]));
+                if (myStrArr[4].contains("-"))
+                {
+                    offset--;
+                    continue;
+                }
+                else if (myStrArr[2].equals("1"))
+                {
+                    offset = 0;
+                }
+                
+                StationRouteInfo newInfo = new StationRouteInfo(myStrArr[0], Integer.parseInt(myStrArr[1]), Integer.parseInt(myStrArr[2]) + offset,
+                        myStrArr[3], Double.parseDouble(myStrArr[4]));
+                allRouteInfo.add(newInfo);
+                
+//                System.out.println( newInfo.getServiceNo() + "," + newInfo.getDirection()+ "," + newInfo.getStationCode() + "," + newInfo.getRouteSequence() + "," + newInfo.getDistFromStart());
+                 
                 
             }
         }
         catch (Exception e)
         {
             //e.printStackTrace();
-            System.out.println("Error");
+            System.out.println("Route Info Error");
         }
         finally
         {
@@ -105,6 +114,6 @@ public class GenericFileReader
             }
         }
         
-        return allRoutes;
+        return allRouteInfo;
     }
 }
