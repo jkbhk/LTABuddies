@@ -11,13 +11,14 @@ package Buddy;
  */
 public class LTAMainMenu extends javax.swing.JFrame 
 {
-    public LTAManager instance;
+
     /**
      * Creates new form LTAMainMenu
      */
     public LTAMainMenu() {
         initComponents();
-        instance = new LTAManager();
+        LTAManager.init();
+        
     }
 
     /**

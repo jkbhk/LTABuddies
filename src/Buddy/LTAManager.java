@@ -3,11 +3,14 @@ package Buddy;
 import java.util.HashMap;
 import java.util.*;
 
-public class LTAManager 
+public final class LTAManager 
 {
-    public HashMap<String, GenericStation> stationHashmap;
+    public static HashMap<String, GenericStation> stationHashmap;
    
-    public LTAManager()
+    private LTAManager()
+    {}
+    
+    public static void init()
     {
         stationHashmap = new HashMap<>();
         GenericFileReader fileReader = new GenericFileReader();
@@ -23,10 +26,9 @@ public class LTAManager
             
         }
         System.out.println(allBusStations.get(1).GetID());
-        
     }
     
-    private void UpdateBusStationInfo(ArrayList<BusStation> allBusStation, ArrayList<StationRouteInfo> allRouteInfo)
+    private static void UpdateBusStationInfo(ArrayList<BusStation> allBusStation, ArrayList<StationRouteInfo> allRouteInfo)
     {
         for (BusStation busStation : allBusStation) 
         {
