@@ -15,6 +15,17 @@ public class Service {
         this.route = route;
     }
     
+    public Service(String serviceCode)
+    {
+        route = new ArrayList<>();
+        this.serviceCode = serviceCode;
+    }
+    
+    public Service()
+    {
+        route = new ArrayList<>();
+    }
+    
     public String GetServiceCode()
     {
         return this.serviceCode;

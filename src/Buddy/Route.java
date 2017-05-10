@@ -9,6 +9,11 @@ public class Route {
     private ArrayList<StationRouteInfo> stations;
             
     //Constructor
+    public Route(ArrayList<StationRouteInfo> stations)
+    {
+        this.stations = stations;
+       
+    }
     public Route()
     {
         stations = new ArrayList<>();
