@@ -4,8 +4,8 @@ package Buddy;
 import java.util.ArrayList;
 
 
-public class Route {
-    
+public class Route 
+{
     private ArrayList<StationRouteInfo> stations;
             
     //Constructor

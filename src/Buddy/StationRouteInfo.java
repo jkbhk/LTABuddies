@@ -1,6 +1,6 @@
 package Buddy;
 
-public class StationRouteInfo 
+public class StationRouteInfo
 {
     private String serviceNo;
     private int direction;
@@ -66,4 +66,11 @@ public class StationRouteInfo
     {
         this.distFromStart = distFromStart;
     }
+    
+    public StationRouteInfo GetNextStationRouteInfo(String serviceNo)
+    {
+        // To be implemented
+        return this;
+    }
+   
 }
