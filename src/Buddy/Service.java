@@ -40,6 +40,11 @@ public class Service {
         return this.route;
     }
     
+    public Route GetRoute(RouteDirection dir)
+    {
+        return this.route.get(dir.ordinal());
+    }
+    
     public Route GetRoute(int i)
     {
         return this.route.get(i);
