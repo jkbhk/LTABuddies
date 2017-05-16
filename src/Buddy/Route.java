@@ -35,8 +35,26 @@ public class Route
         return stations.size();
     }
     
+    public boolean ContainSubsequentStation(StationRouteInfo sri, GenericStation station)
+    {
+        for (int i = sri.getRouteSequence() - 1; i < stations.size(); i++)
+        {
+            if (station.GetID().equals(stations.get(i).getStationCode()))
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public StationRouteInfo GetNextStationRouteInfo(int currentSequence)
     {
-        return stations.get(currentSequence);
+        if (currentSequence < stations.size())
+        {
+             return stations.get(currentSequence);
+        }
+        
+        return null;
     }
 }

@@ -9,7 +9,7 @@ public abstract class GenericStation implements Comparable
     protected ArrayList<StationRouteInfo> stationRouteInfoList = new ArrayList<>();
     
     public double distFromStartPoint;   //G Cost
-    public GenericStation parent; 
+    public GenericStation parent;
 
     public GenericStation(String name, String id)
     {
