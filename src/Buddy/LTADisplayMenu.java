@@ -5,25 +5,41 @@
  */
 package Buddy;
 
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Component;
+import java.util.HashMap;
+import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Hoshi
+ * @author User
  */
-public class LTASplashScreen extends javax.swing.JFrame {
+public class LTADisplayMenu extends javax.swing.JFrame {
 
     /**
-     * Creates new form LTASplashScreen
+     * Creates new form LTADisplayMenu
      */
-    public static final int SPLASH_DELAY = 4;
-    public static LTASplashScreen SplashScreen;
-    
-    public LTASplashScreen() {
+    public LTADisplayMenu() {
         initComponents();
-        LTAManager.init();
+    }
+    
+    public void PopulateBusplayList()
+    {
+        jDisplayList.removeAll();
+        //jDisplayList = LTAManager.ServiceHashMap;
+        DefaultListModel listModel = new DefaultListModel();
+        
+        for(String s : LTAManager.ServiceHashMap.keySet())
+        {
+           listModel.addElement(s);
+        }
+        
+        jDisplayList.setModel(listModel);
+        
+    }
+    
+    public void PopulateSearchList()
+    {
+        
     }
 
     /**
@@ -35,21 +51,32 @@ public class LTASplashScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jDisplayList = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/MRT.jpg"))); // NOI18N
+        jDisplayList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jDisplayList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 61, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -72,42 +99,26 @@ public class LTASplashScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LTASplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LTADisplayMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LTASplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LTADisplayMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LTASplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LTADisplayMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LTASplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LTADisplayMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SplashScreen = new LTASplashScreen();
-                SplashScreen.setVisible(true);
+                new LTADisplayMenu().setVisible(true);
             }
         });
-        
-        try 
-            {
-            TimeUnit.SECONDS.sleep(SPLASH_DELAY);
-            System.out.println("\"initialized\"");
-            } catch (InterruptedException ex)
-            {
-                Logger.getLogger(LTASplashScreen.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-            LTAMainMenu menu = new LTAMainMenu();
-            menu.setVisible(true);
-            SplashScreen.setVisible(false);
-            
-            
-            
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList jDisplayList;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
