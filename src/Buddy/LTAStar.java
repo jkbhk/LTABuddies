@@ -1,11 +1,14 @@
 package Buddy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public final class LTAStar 
 {
     public static ArrayList<GenericStation> FindPath(GenericStation start, GenericStation end)
     {
+        boolean isFound = false;
+        
         PriorityQueue<GenericStation> openSet = new PriorityQueue<>();
         PriorityQueue<GenericStation> closeSet = new PriorityQueue<>();
         
@@ -17,6 +20,7 @@ public final class LTAStar
                        
             if (currentStation == end)
             {
+                isFound = true;
                 break;
             }
             
@@ -51,8 +55,34 @@ public final class LTAStar
             }
         }
         
+        ArrayList<GenericStation> path = new ArrayList<>();
+        
+        if(isFound)
+        {
+            path = GetPath(start, end);
+            
+            return path;
+        }
         
         
+        return null;
+    }
+    
+    private static ArrayList<GenericStation> GetPath(GenericStation start, GenericStation end)
+    {
+        ArrayList<GenericStation> path = new ArrayList<>();
+        
+        GenericStation currentStation = end;
+        
+        while (currentStation != start)
+        {
+            path.add(currentStation);
+            currentStation = currentStation.parent;
+        }
+        
+        Collections.reverse(path);
+        
+        return path;
     }
     
     private static double GetDistance(StationRouteInfo start, StationRouteInfo end)
