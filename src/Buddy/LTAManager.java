@@ -57,8 +57,6 @@ public final class LTAManager
                 }
             }
         }
-        
-           
     }
     
     public static GenericStation GetGenericStation(String stationCode)
@@ -72,6 +70,12 @@ public final class LTAManager
             System.out.println("Invalid Station Code");
             return null;
         }
+    }
+    
+    public static boolean ContainsStationInRoute(StationRouteInfo sri, GenericStation station)
+    {
+        Route sriRoute = ServiceHashMap.get(sri.getServiceNo()).GetRoute(sri.getDirection() - 1);
+        return sriRoute.ContainSubsequentStation(sri,station);
     }
     
     public static StationRouteInfo GetNextStationRouteInfo(String serviceNo, int direction , int stationSequence)

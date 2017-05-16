@@ -5,7 +5,9 @@
  */
 package Buddy;
 
-import javafx.scene.paint.Color;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 
 /**
  *
@@ -51,6 +53,11 @@ public class LTAMainMenu extends javax.swing.JFrame {
         });
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
 
@@ -64,7 +71,9 @@ public class LTAMainMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(homeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(202, 202, 202)
+                .addComponent(homeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(busButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -97,6 +106,25 @@ public class LTAMainMenu extends javax.swing.JFrame {
         displayMenu.setVisible(true);
         
     }//GEN-LAST:event_busButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        GenericStation start = LTAManager.GetGenericStation("76059");
+        GenericStation end =  LTAManager.GetGenericStation("84599");
+        
+        
+        
+        ArrayList<StationRouteInfo> pathInfo = LTAStar.FindPath(start, end);
+
+        System.out.println(pathInfo.size());
+        for (int i = 0; i < pathInfo.size(); i++)
+        {
+            GenericStation curStation = LTAManager.GetGenericStation(pathInfo.get(i).getStationCode());
+            System.out.println(pathInfo.get(i).getServiceNo()+ " : " + pathInfo.get(i).getStationCode()+ " : " + round(curStation.distFromStartPoint, 1));
+            
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,6 +160,15 @@ public class LTAMainMenu extends javax.swing.JFrame {
                 
             }
         });
+    }
+    
+    public static double round(double value, int places) 
+    {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
