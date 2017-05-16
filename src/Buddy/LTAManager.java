@@ -8,8 +8,7 @@ public final class LTAManager
     public static HashMap<String, GenericStation> StationHashmap;
     public static HashMap<String,Service> ServiceHashMap;
    
-    private LTAManager()
-    {}
+    private LTAManager() {}
     
     public static void init()
     {
@@ -45,7 +44,7 @@ public final class LTAManager
     
             if(nextSRI == null || nextSRI.getRouteSequence() < currentSRI.getRouteSequence())
             {
-                tempService.GetRoute().add(someRoute);
+                tempService.GetRouteList().add(someRoute);
 
                 someRoute = new Route();
 
@@ -58,10 +57,42 @@ public final class LTAManager
                 }
             }
         }
+        
            
     }
     
+    public static GenericStation GetGenericStation(String stationCode)
+    {
+        if(StationHashmap.containsKey(stationCode))
+        {
+            return StationHashmap.get(stationCode);
+        }
+        else
+        {
+            System.out.println("Invalid Station Code");
+            return null;
+        }
+    }
+    
+    public static StationRouteInfo GetNextStationRouteInfo(String serviceNo, int direction , int stationSequence)
+    {
+        if(ServiceHashMap.containsKey(serviceNo))
+        {
+            Service stationService = ServiceHashMap.get(serviceNo);
+            Route stationRoute = stationService.GetRoute(direction - 1);
+            
+            StationRouteInfo nextStationRouteInfo = stationRoute.GetNextStationRouteInfo(stationSequence);
+            
+            return nextStationRouteInfo;
+        }
+        else
+        {
+            System.out.println("Invalid Service No");
+            return null;
+        }
 
+    }
+    
     private static void UpdateBusStationInfo(ArrayList<BusStation> allBusStation, ArrayList<StationRouteInfo> allRouteInfo)
     {
         for (BusStation busStation : allBusStation) 

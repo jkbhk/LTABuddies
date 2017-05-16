@@ -2,11 +2,14 @@ package Buddy;
 
 import java.util.ArrayList;
 
-public abstract class GenericStation
+public abstract class GenericStation implements Comparable
 {
     protected String name;
     protected String id; 
     protected ArrayList<StationRouteInfo> stationRouteInfoList = new ArrayList<>();
+    
+    public double distFromStartPoint;   //G Cost
+    public GenericStation parent; 
 
     public GenericStation(String name, String id)
     {
@@ -33,9 +36,28 @@ public abstract class GenericStation
     {
         this.id = id;
     }
+
+    public ArrayList<StationRouteInfo> GetStationRouteInfoList() {
+        return stationRouteInfoList;
+    }
+
+    public void SetStationRouteInfoList(ArrayList<StationRouteInfo> stationRouteInfoList) {
+        this.stationRouteInfoList = stationRouteInfoList;
+    }
     
     public void AddStationRouteInfo(StationRouteInfo temp)
     {
         stationRouteInfoList.add(temp);
+    }
+    
+    @Override
+    public int compareTo(Object obj)
+    {
+        GenericStation node2 = (GenericStation)obj;
+        if(distFromStartPoint < node2.distFromStartPoint)
+        {
+            return 1;
+        }
+        return -1;
     }
 }

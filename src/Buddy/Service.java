@@ -2,7 +2,6 @@ package Buddy;
 
 import java.util.ArrayList;
 
-
 public class Service {
 
     private String serviceCode;
@@ -36,9 +35,14 @@ public class Service {
         this.serviceCode = serviceCode;
     }
     
-    public ArrayList<Route> GetRoute()
+    public ArrayList<Route> GetRouteList()
     {
         return this.route;
+    }
+    
+    public Route GetRoute(int i)
+    {
+        return this.route.get(i);
     }
     
 }
