@@ -5,25 +5,23 @@
  */
 package Buddy;
 
-/**
- *
- * @author Hoshi
- */
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class LTASplashScreen extends javax.swing.JFrame
-{
+/**
+ *
+ * @author Hoshi
+ */
+public class LTASplashScreen extends javax.swing.JFrame {
+
     /**
-     * Creates new form LTAMainMenu
+     * Creates new form LTASplashScreen
      */
     public static final int SPLASH_DELAY = 4;
     
-    public LTASplashScreen(){
+    public LTASplashScreen() {
         initComponents();
-        LTAManager.init();
-        
     }
 
     /**
@@ -38,13 +36,19 @@ public class LTASplashScreen extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(204, 204, 204));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MRT.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/MRT.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -75,27 +79,15 @@ public class LTASplashScreen extends javax.swing.JFrame
             java.util.logging.Logger.getLogger(LTASplashScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-            
-                    new LTASplashScreen().setVisible(true);
-             
-           
+                new LTASplashScreen().setVisible(true);
             }
         });
         
-            try 
+        try 
             {
             TimeUnit.SECONDS.sleep(SPLASH_DELAY);
             System.out.println("\"initialized\"");
