@@ -7,18 +7,15 @@ package Buddy;
 
 /**
  *
- * @author Hoshi
+ * @author User
  */
-public class LTAMainMenu extends javax.swing.JFrame 
-{
+public class LTAMainMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form LTAMainMenu
      */
     public LTAMainMenu() {
         initComponents();
-        LTAManager.init();
-        
     }
 
     /**
@@ -30,21 +27,44 @@ public class LTAMainMenu extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        busButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        busButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/busIcon.png"))); // NOI18N
+        busButton.setToolTipText("Show all buses");
+        busButton.setBorderPainted(false);
+        busButton.setMinimumSize(new java.awt.Dimension(0, 0));
+        busButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(busButton, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(busButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void busButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("all buses!!!!");
+    }//GEN-LAST:event_busButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,5 +102,6 @@ public class LTAMainMenu extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton busButton;
     // End of variables declaration//GEN-END:variables
 }
