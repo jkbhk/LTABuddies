@@ -8,7 +8,7 @@ public abstract class GenericStation implements Comparable
     protected String id; 
     protected ArrayList<StationRouteInfo> stationRouteInfoList = new ArrayList<>();
     
-    public float distFromStartPoint;   //G Cost
+    public double distFromStartPoint;   //G Cost
     public GenericStation parent; 
 
     public GenericStation(String name, String id)
@@ -50,6 +50,7 @@ public abstract class GenericStation implements Comparable
         stationRouteInfoList.add(temp);
     }
     
+    @Override
     public int compareTo(Object obj)
     {
         GenericStation node2 = (GenericStation)obj;

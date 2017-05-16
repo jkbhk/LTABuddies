@@ -34,4 +34,9 @@ public class Route
     {
         return stations.size();
     }
+    
+    public StationRouteInfo GetNextStationRouteInfo(int currentSequence)
+    {
+        return stations.get(currentSequence);
+    }
 }
