@@ -5,9 +5,13 @@
  */
 package Buddy;
 
-import com.teamdev.jxmaps.MapViewOptions;
+import eu.jacquet80.minigeo.MapPanel;
+import eu.jacquet80.minigeo.POI;
+import eu.jacquet80.minigeo.Point;
+import eu.jacquet80.minigeo.Segment;
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.util.Collection;
 
 /**
  *
@@ -15,19 +19,17 @@ import javax.swing.JFrame;
  */
 public class LTAMapMenu extends javax.swing.JFrame 
 {
-    public LTAMap mapView;
+    private final MapPanel map;
     /**
      * Creates new form LTAMapMenu
      */
-    public LTAMapMenu() {
-        initComponents();
-        
-        MapViewOptions options = new MapViewOptions();
-        options.importPlaces();
-        mapView = new LTAMap(options);
-        
-        mapPanel.add(mapView, BorderLayout.CENTER);
-        mapView.setSize(mapPanel.getWidth(), mapPanel.getHeight());
+    public LTAMapMenu() 
+    {
+        initComponents();        
+        map = new MapPanel();
+        mapPanel.add(map, BorderLayout.CENTER);
+        map.setSize(mapPanel.getWidth(), mapPanel.getHeight());
+        addSegment(new Segment(new Point(48, 2), new Point(45, -1), Color.RED));
     }
 
     /**
@@ -193,6 +195,30 @@ public class LTAMapMenu extends javax.swing.JFrame
             }
         });
     }
+    
+    public void clear() {
+            map.clear();
+    }
+    
+    public void addSegment(Segment segment) {
+		map.addSegment(segment);
+	}
+	
+	/**
+	 * Adds a whole collection of segments to the list of segments to display
+	 * @param segments the collection of segments to add
+	 */
+	public void addSegments(Collection<Segment> segments) {
+		map.addSegments(segments);
+	}
+	
+	/**
+	 * Adds a point of interest (POI) to the list of POIs to display. 
+	 * @param poi the POI to add
+	 */
+	public void addPOI(POI poi) {
+		map.addPOI(poi);
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField destinationField;
