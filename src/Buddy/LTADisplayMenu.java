@@ -83,11 +83,12 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jDisplayList);
 
-        busInfoLabel.setBackground(new java.awt.Color(204, 0, 153));
+        busInfoLabel.setBackground(new java.awt.Color(255, 51, 102));
         busInfoLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         busInfoLabel.setForeground(new java.awt.Color(255, 255, 255));
         busInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         busInfoLabel.setText("Bus Information");
+        busInfoLabel.setOpaque(true);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Service Number:");
@@ -129,7 +130,7 @@ public class LTADisplayMenu extends javax.swing.JFrame {
                                 .addGap(0, 7, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
+                        .addGap(179, 179, 179)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(serviceNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,11 +146,11 @@ public class LTADisplayMenu extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(busInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(serviceNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(routeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
