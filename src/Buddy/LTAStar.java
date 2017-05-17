@@ -5,7 +5,11 @@ import java.util.Collections;
 
 public final class LTAStar 
 {
-    public static ArrayList<StationRouteInfo> FindPath(GenericStation start, GenericStation end)
+    public static final double busSpeed = 40.0; //km per hour
+    public static final double transferTime = 2.0; // minutes;
+    public static final double stationStopTime = 0.5; // minutes
+    
+    public static ArrayList<StationRouteInfo> FindPath(GenericStation start, GenericStation end, PathFindFactor selectedFactor)
     {
         System.out.println("Start");
         boolean isFound = false;
@@ -43,12 +47,40 @@ public final class LTAStar
                     continue;
                 }
                 
-                double newDistFromStartCost = currentStation.startCost + GetDistance(currentRouteInfo, nextStationRouteInfo);
-
-//                if (currentStation.parentInfo != null && !currentRouteInfo.getServiceNo().equals(currentStation.parentInfo.getServiceNo()))
-//                {
-//                    newDistFromStartCost += 1;
-//                }
+                double newDistFromStartCost = currentStation.startCost;
+                
+                switch (selectedFactor)
+                {
+                    case BESTROUTE:
+                    {
+                        if(currentStation instanceof BusStation)
+                        {
+                            // Bus Travel Time
+                            newDistFromStartCost += GetDistance(currentRouteInfo, nextStationRouteInfo)/ (busSpeed/60.0);
+                        }
+                        // Transfer Time
+                        newDistFromStartCost += stationStopTime;
+                        break;
+                    }
+                    case DISTANCE:
+                    {
+                        newDistFromStartCost += GetDistance(currentRouteInfo, nextStationRouteInfo);
+                        break;
+                    }
+                    case SHORTESTNOOFSTATION:
+                    {
+                        newDistFromStartCost += 1;
+                        break;
+                    }                  
+                    case LEASTTRANSFER:
+                    {
+                        if (currentStation.parentInfo != null && !currentRouteInfo.getServiceNo().equals(currentStation.parentInfo.getServiceNo()))
+                        {
+                            newDistFromStartCost += 1;
+                        }
+                        break;
+                    }
+                }
                 
                 if (newDistFromStartCost < neighbourStation.startCost || !openSet.Contains(neighbourStation))
                 {
