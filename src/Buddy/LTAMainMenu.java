@@ -72,9 +72,6 @@ public class LTAMainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(202, 202, 202)
-                .addComponent(homeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(busButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
@@ -82,6 +79,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
+            .addComponent(homeLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,6 +95,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void busButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busButtonActionPerformed
@@ -109,20 +108,23 @@ public class LTAMainMenu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        GenericStation start = LTAManager.GetGenericStation("76059");
-        GenericStation end =  LTAManager.GetGenericStation("84599");
         
-        
-        
-        ArrayList<StationRouteInfo> pathInfo = LTAStar.FindPath(start, end);
-
-        System.out.println(pathInfo.size());
-        for (int i = 0; i < pathInfo.size(); i++)
-        {
-            GenericStation curStation = LTAManager.GetGenericStation(pathInfo.get(i).getStationCode());
-            System.out.println(pathInfo.get(i).getServiceNo()+ " : " + pathInfo.get(i).getStationCode()+ " : " + round(curStation.distFromStartPoint, 1));
-            
-        }
+        LTASearchMenu searchMenu = new LTASearchMenu();
+        searchMenu.setVisible(true);
+//        GenericStation start = LTAManager.GetGenericStation("1012");
+//        GenericStation end =  LTAManager.GetGenericStation("1013");
+//        
+//        
+//        
+//        ArrayList<StationRouteInfo> pathInfo = LTAStar.FindPath(start, end);
+//
+//        System.out.println(pathInfo.size());
+//        for (int i = 0; i < pathInfo.size(); i++)
+//        {
+//            GenericStation curStation = LTAManager.GetGenericStation(pathInfo.get(i).getStationCode());
+//            System.out.println(pathInfo.get(i).getServiceNo()+ " : " + pathInfo.get(i).getStationCode()+ " : " + round(curStation.distFromStartPoint, 1));
+//            
+//        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
