@@ -101,7 +101,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
     private void busButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busButtonActionPerformed
         // TODO add your handling code here:
         LTADisplayMenu displayMenu = new LTADisplayMenu();
-        displayMenu.PopulateBusplayList();
+        displayMenu.PopulateBusList();
         displayMenu.setVisible(true);
         
     }//GEN-LAST:event_busButtonActionPerformed

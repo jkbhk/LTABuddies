@@ -5,8 +5,10 @@
  */
 package Buddy;
 
-import java.util.ArrayList;
+import java.awt.Component;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
@@ -25,13 +27,15 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         initComponents();
         busInfoLabel.setOpaque(true);
         
+        
     }
     
-    public void PopulateBusplayList()
+    public void PopulateBusList()
     {
         jDisplayList.removeAll();
         //jDisplayList = LTAManager.ServiceHashMap;
         DefaultListModel listModel = new DefaultListModel();
+        
         
         for(String s : LTAManager.ServiceHashMap.keySet())
         {
@@ -39,7 +43,7 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         }
         
         jDisplayList.setModel(listModel);
-        
+        jDisplayList.setSelectedIndex(0);
     }
     
     public void PopulateSearchList()
@@ -63,8 +67,7 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         serviceNumberLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         routeTab = new javax.swing.JTabbedPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        directionList1 = new javax.swing.JList();
+        inspectButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 204));
@@ -97,9 +100,12 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Routes:");
 
-        jScrollPane2.setViewportView(directionList1);
-
-        routeTab.addTab("Route no.", jScrollPane2);
+        inspectButton.setText("View");
+        inspectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inspectButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,11 +123,12 @@ public class LTADisplayMenu extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(busInfoLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(routeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(inspectButton)
+                                    .addComponent(routeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -141,7 +148,10 @@ public class LTADisplayMenu extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(routeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(routeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(inspectButton)
+                        .addGap(6, 6, 6)))
                 .addContainerGap())
         );
 
@@ -163,17 +173,39 @@ public class LTADisplayMenu extends javax.swing.JFrame {
             for( int i = 0; i < currentService.GetRouteList().size(); i++)
             {
                 DefaultListModel listModel = new DefaultListModel();
-                JList currentJList = new JList();
+                
                 
                 for(StationRouteInfo sri : currentService.GetRoute(i).GetStationsToDistRef())
                 {
-                    String elem = LTAManager.StationHashmap.get(sri.getStationCode()).GetName();
-                    elem += " ----- " + sri.getDistFromStart();
-                    
-                    listModel.addElement(elem);   
+                    listModel.addElement(sri);    
                 }        
-                
+                JList currentJList = new JList();
                 currentJList.setModel(listModel);
+                
+                currentJList.setCellRenderer(new DefaultListCellRenderer()
+                {
+                    @Override
+                    public Component getListCellRendererComponent(JList<?> list,
+                                                   Object value,
+                                                   int index,
+                                                   boolean isSelected,
+                                                   boolean cellHasFocus)
+                    {
+                        Component renderer = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                        if (renderer instanceof JLabel && value instanceof StationRouteInfo)
+                        {
+                            StationRouteInfo currentSRI = (StationRouteInfo)value;
+                            String text = LTAManager.GetGenericStation(currentSRI.getStationCode()).GetName();
+                            
+                            
+                            ((JLabel)renderer).setText(text);
+                        }
+                        return renderer;
+                    }
+                    //@Override
+                    //public Component getListCellRendererComponent(JList<?>)
+                }
+                );
                 
                 // Add a new tab
                 routeTab.add("" + (i+1) , new JScrollPane(currentJList));
@@ -182,6 +214,20 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jDisplayListValueChanged
+
+    private void inspectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inspectButtonActionPerformed
+        // TODO add your handling code here:
+        
+        JScrollPane selectedScrollPane = (JScrollPane)routeTab.getSelectedComponent();
+        JList selectedList = (JList)selectedScrollPane.getViewport().getComponent(0);
+        
+        StationRouteInfo selectedSRI = (StationRouteInfo)selectedList.getSelectedValue();
+        
+        LTAStopMenu stopMenu = new LTAStopMenu(LTAManager.GetGenericStation(selectedSRI.getStationCode()));
+        stopMenu.setVisible(true);
+       
+        
+    }//GEN-LAST:event_inspectButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,12 +266,11 @@ public class LTADisplayMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel busInfoLabel;
-    private javax.swing.JList directionList1;
+    private javax.swing.JButton inspectButton;
     private javax.swing.JList jDisplayList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane routeTab;
     private javax.swing.JLabel serviceNumberLabel;
     // End of variables declaration//GEN-END:variables
