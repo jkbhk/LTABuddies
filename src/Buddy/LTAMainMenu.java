@@ -78,11 +78,6 @@ public class LTAMainMenu extends javax.swing.JFrame {
         });
 
         jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         homeLabel.setBackground(new java.awt.Color(255, 51, 102));
         homeLabel.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -98,7 +93,6 @@ public class LTAMainMenu extends javax.swing.JFrame {
 
         exitButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/exit.png"))); // NOI18N
         exitButton.setMinimumSize(new java.awt.Dimension(150, 150));
-        exitButton.setPreferredSize(new java.awt.Dimension(183, 159));
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitButtonMouseClicked(evt);
