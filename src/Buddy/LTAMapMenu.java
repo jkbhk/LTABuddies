@@ -5,19 +5,29 @@
  */
 package Buddy;
 
+import com.teamdev.jxmaps.MapViewOptions;
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+
 /**
  *
  * @author User
  */
-public class LTAMapMenu extends javax.swing.JFrame {
-
+public class LTAMapMenu extends javax.swing.JFrame 
+{
+    public LTAMap mapView;
     /**
      * Creates new form LTAMapMenu
      */
     public LTAMapMenu() {
         initComponents();
-       
         
+        MapViewOptions options = new MapViewOptions();
+        options.importPlaces();
+        mapView = new LTAMap(options);
+        
+        mapPanel.add(mapView, BorderLayout.CENTER);
+        mapView.setSize(mapPanel.getWidth(), mapPanel.getHeight());
     }
 
     /**
@@ -37,6 +47,7 @@ public class LTAMapMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         destinationField = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        mapPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -50,6 +61,11 @@ public class LTAMapMenu extends javax.swing.JFrame {
         startField.setBackground(new java.awt.Color(66, 133, 244));
         startField.setForeground(new java.awt.Color(255, 255, 255));
         startField.setBorder(null);
+        startField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                startFieldKeyTyped(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("End");
@@ -106,22 +122,41 @@ public class LTAMapMenu extends javax.swing.JFrame {
                 .addGap(0, 387, Short.MAX_VALUE))
         );
 
+        mapPanel.setOpaque(false);
+
+        javax.swing.GroupLayout mapPanelLayout = new javax.swing.GroupLayout(mapPanel);
+        mapPanel.setLayout(mapPanelLayout);
+        mapPanelLayout.setHorizontalGroup(
+            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 837, Short.MAX_VALUE)
+        );
+        mapPanelLayout.setVerticalGroup(
+            mapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 844, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mapPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void startFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_startFieldKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startFieldKeyTyped
 
     /**
      * @param args the command line arguments
@@ -154,6 +189,7 @@ public class LTAMapMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LTAMapMenu().setVisible(true);
+                
             }
         });
     }
@@ -166,6 +202,7 @@ public class LTAMapMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JPanel mapPanel;
     private javax.swing.JTextField startField;
     // End of variables declaration//GEN-END:variables
 }
