@@ -28,6 +28,7 @@ public class LTAMapMenu extends javax.swing.JFrame
         
         mapPanel.add(mapView, BorderLayout.CENTER);
         mapView.setSize(mapPanel.getWidth(), mapPanel.getHeight());
+        
     }
 
     /**
