@@ -38,7 +38,7 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         
         
         for(String s : LTAManager.ServiceHashMap.keySet())
-        {
+        {   
            listModel.addElement(s);
         }
         
@@ -46,10 +46,6 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         jDisplayList.setSelectedIndex(0);
     }
     
-    public void PopulateSearchList()
-    {
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,6 +64,7 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         routeTab = new javax.swing.JTabbedPane();
         inspectButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 0, 204));
@@ -87,7 +84,7 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jDisplayList);
 
         busInfoLabel.setBackground(new java.awt.Color(204, 0, 153));
-        busInfoLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        busInfoLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         busInfoLabel.setForeground(new java.awt.Color(255, 255, 255));
         busInfoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         busInfoLabel.setText("Bus Information");
@@ -107,29 +104,36 @@ public class LTADisplayMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 3, 10)); // NOI18N
+        jLabel3.setText("* Distance measured in km *");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(serviceNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(349, 349, 349))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(busInfoLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(inspectButton)
-                                    .addComponent(routeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(inspectButton))
+                                        .addComponent(routeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 7, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(serviceNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -141,16 +145,18 @@ public class LTADisplayMenu extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(busInfoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(serviceNumberLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(routeTab, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inspectButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(inspectButton)
+                            .addComponent(jLabel3))
                         .addGap(6, 6, 6)))
                 .addContainerGap())
         );
@@ -159,6 +165,14 @@ public class LTADisplayMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jListMouseDoubleClicked(java.awt.event.MouseEvent evt) {                                            
+    JList list = (JList)evt.getSource();
+    if (evt.getClickCount() == 2) {
+        int index = list.locationToIndex(evt.getPoint());  
+        Inspect();
+    }
+}
+    
     private void jDisplayListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jDisplayListValueChanged
         // TODO add your handling code here:
         currentService = LTAManager.ServiceHashMap.get(jDisplayList.getSelectedValue());
@@ -181,6 +195,14 @@ public class LTADisplayMenu extends javax.swing.JFrame {
                 }        
                 JList currentJList = new JList();
                 currentJList.setModel(listModel);
+
+                currentJList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListMouseDoubleClicked(evt);
+            }
+        });
+                
+                
                 
                 currentJList.setCellRenderer(new DefaultListCellRenderer()
                 {
@@ -195,7 +217,8 @@ public class LTADisplayMenu extends javax.swing.JFrame {
                         if (renderer instanceof JLabel && value instanceof StationRouteInfo)
                         {
                             StationRouteInfo currentSRI = (StationRouteInfo)value;
-                            String text = LTAManager.GetGenericStation(currentSRI.getStationCode()).GetName();
+                            String text = currentSRI.getDistFromStart() + "  ------ " +  
+                                    LTAManager.GetGenericStation(currentSRI.getStationCode()).GetName();
                             
                             
                             ((JLabel)renderer).setText(text);
@@ -216,19 +239,27 @@ public class LTADisplayMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jDisplayListValueChanged
 
     private void inspectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inspectButtonActionPerformed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:    
+        Inspect();
+      
+    }//GEN-LAST:event_inspectButtonActionPerformed
+
+    private void Inspect()
+    {
         JScrollPane selectedScrollPane = (JScrollPane)routeTab.getSelectedComponent();
         JList selectedList = (JList)selectedScrollPane.getViewport().getComponent(0);
         
         StationRouteInfo selectedSRI = (StationRouteInfo)selectedList.getSelectedValue();
+        if(selectedSRI != null)
+        {
+            LTAStopMenu stopMenu = new LTAStopMenu(LTAManager.GetGenericStation(selectedSRI.getStationCode()));
+            stopMenu.setVisible(true);
+        }
+        else
+            System.out.println("nothing to view");
         
-        LTAStopMenu stopMenu = new LTAStopMenu(LTAManager.GetGenericStation(selectedSRI.getStationCode()));
-        stopMenu.setVisible(true);
-       
-        
-    }//GEN-LAST:event_inspectButtonActionPerformed
-
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -270,6 +301,7 @@ public class LTADisplayMenu extends javax.swing.JFrame {
     private javax.swing.JList jDisplayList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane routeTab;
     private javax.swing.JLabel serviceNumberLabel;
