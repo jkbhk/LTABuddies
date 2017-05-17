@@ -8,8 +8,9 @@ public abstract class GenericStation implements Comparable
     protected String id; 
     protected ArrayList<StationRouteInfo> stationRouteInfoList = new ArrayList<>();
     
-    public double distFromStartPoint;   //G Cost
+    public double startCost;   //G Cost
     public GenericStation parent;
+    public StationRouteInfo parentInfo;
 
     public GenericStation(String name, String id)
     {
@@ -54,7 +55,7 @@ public abstract class GenericStation implements Comparable
     public int compareTo(Object obj)
     {
         GenericStation node2 = (GenericStation)obj;
-        if(distFromStartPoint < node2.distFromStartPoint)
+        if(startCost < node2.startCost)
         {
             return 1;
         }

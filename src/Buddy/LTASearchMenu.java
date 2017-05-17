@@ -5,6 +5,8 @@
  */
 package Buddy;
 
+import javax.swing.JToggleButton;
+
 /**
  *
  * @author Hoshi
@@ -29,22 +31,40 @@ public class LTASearchMenu extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         stationCode = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        stationRoad = new javax.swing.JToggleButton();
         stationName = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         stationList = new javax.swing.JList<>();
+        viewButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         stationCode.setSelected(true);
         stationCode.setText("Station Code");
+        stationCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stationCodeActionPerformed(evt);
+            }
+        });
 
-        jToggleButton2.setText("jToggleButton1");
+        stationRoad.setText("Station Road");
+        stationRoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stationRoadActionPerformed(evt);
+            }
+        });
 
         stationName.setText("Station Name");
+        stationName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stationNameActionPerformed(evt);
+            }
+        });
 
         stationList.setToolTipText("");
         jScrollPane1.setViewportView(stationList);
+
+        viewButton.setText("View");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -52,16 +72,18 @@ public class LTASearchMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(stationCode, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stationName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton2))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(viewButton)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField1)
+                        .addComponent(jScrollPane1)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(stationCode, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(stationName, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(stationRoad, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,15 +94,38 @@ public class LTASearchMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stationCode, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(stationName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(stationRoad, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(viewButton)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void stationCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stationCodeActionPerformed
+        // TODO add your handling code here:
+        stationCode.setSelected(true);
+        stationName.setSelected(false);
+        stationRoad.setSelected(false);
+    }//GEN-LAST:event_stationCodeActionPerformed
+
+    private void stationNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stationNameActionPerformed
+        // TODO add your handling code here:
+        stationCode.setSelected(false);
+        stationName.setSelected(true);
+        stationRoad.setSelected(false);
+    }//GEN-LAST:event_stationNameActionPerformed
+
+    private void stationRoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stationRoadActionPerformed
+        // TODO add your handling code here:
+        stationCode.setSelected(false);
+        stationName.setSelected(false);
+        stationRoad.setSelected(true);
+    }//GEN-LAST:event_stationRoadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,9 +165,10 @@ public class LTASearchMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton stationCode;
     private javax.swing.JList<String> stationList;
     private javax.swing.JToggleButton stationName;
+    private javax.swing.JToggleButton stationRoad;
+    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
 }

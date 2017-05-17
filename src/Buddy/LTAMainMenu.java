@@ -60,6 +60,11 @@ public class LTAMainMenu extends javax.swing.JFrame {
         });
 
         jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         homeLabel.setBackground(new java.awt.Color(204, 0, 153));
         homeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -111,22 +116,28 @@ public class LTAMainMenu extends javax.swing.JFrame {
         
         LTASearchMenu searchMenu = new LTASearchMenu();
         searchMenu.setVisible(true);
-//        GenericStation start = LTAManager.GetGenericStation("1012");
-//        GenericStation end =  LTAManager.GetGenericStation("1013");
-//        
-//        
-//        
-//        ArrayList<StationRouteInfo> pathInfo = LTAStar.FindPath(start, end);
-//
-//        System.out.println(pathInfo.size());
-//        for (int i = 0; i < pathInfo.size(); i++)
-//        {
-//            GenericStation curStation = LTAManager.GetGenericStation(pathInfo.get(i).getStationCode());
-//            System.out.println(pathInfo.get(i).getServiceNo()+ " : " + pathInfo.get(i).getStationCode()+ " : " + round(curStation.distFromStartPoint, 1));
-//            
-//        }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        GenericStation start = LTAManager.GetGenericStation("1012");
+        GenericStation end =  LTAManager.GetGenericStation("1019");
+        
+        
+        
+        ArrayList<StationRouteInfo> pathInfo = LTAStar.FindPath(start, end);
+
+        System.out.println(pathInfo.size());
+        for (int i = 0; i < pathInfo.size(); i++)
+        {
+            GenericStation curStation = LTAManager.GetGenericStation(pathInfo.get(i).getStationCode());
+            System.out.println(pathInfo.get(i).getServiceNo()+ " : " + pathInfo.get(i).getStationCode()+ " : "  + 
+                    pathInfo.get(i).getRouteSequence()+ " : "  + pathInfo.get(i).getDirection()+ " : " 
+                    + round(curStation.startCost, 1));
+            
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

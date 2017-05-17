@@ -27,32 +27,39 @@ public final class LTAStar
                 break;
             }
             
-            for(StationRouteInfo routeInfo : currentStation.GetStationRouteInfoList())
+            for(StationRouteInfo currentRouteInfo : currentStation.GetStationRouteInfoList())
             {
-                StationRouteInfo nextStationRouteInfo = LTAManager.GetNextStationRouteInfo(routeInfo.getServiceNo(), routeInfo.getDirection(), routeInfo.getRouteSequence());
+                StationRouteInfo nextStationRouteInfo = LTAManager.GetNextStationRouteInfo(currentRouteInfo.getServiceNo(), currentRouteInfo.getDirection(), currentRouteInfo.getRouteSequence());
                 
                 if(nextStationRouteInfo == null)
                 {
                     continue;
                 }
                  
-                GenericStation nextStation = LTAManager.GetGenericStation(nextStationRouteInfo.getStationCode());
+                GenericStation neighbourStation = LTAManager.GetGenericStation(nextStationRouteInfo.getStationCode());
                 
-                if (closeSet.Contains(nextStation))
+                if (closeSet.Contains(neighbourStation))
                 {
                     continue;
                 }
                 
-                double newDistFromStartCost = currentStation.distFromStartPoint + GetDistance(routeInfo, nextStationRouteInfo);
+                double newDistFromStartCost = currentStation.startCost + GetDistance(currentRouteInfo, nextStationRouteInfo);
 
-                if (newDistFromStartCost < nextStation.distFromStartPoint || !openSet.Contains(nextStation))
+//                if (currentStation.parentInfo != null && !currentRouteInfo.getServiceNo().equals(currentStation.parentInfo.getServiceNo()))
+//                {
+//                    newDistFromStartCost += 1;
+//                }
+                
+                if (newDistFromStartCost < neighbourStation.startCost || !openSet.Contains(neighbourStation))
                 {
-                    nextStation.distFromStartPoint = newDistFromStartCost;
-                    nextStation.parent = currentStation;
+                    neighbourStation.startCost = newDistFromStartCost;
+                    neighbourStation.parent = currentStation;
+                    neighbourStation.parentInfo = currentRouteInfo;
                     
-                    if(!openSet.Contains(nextStation))
+                    if(!openSet.Contains(neighbourStation))
                     {
-                        openSet.Add(nextStation);
+                        openSet.Add(neighbourStation);
+                        openSet.Sort();
                     }
                     else
                     {
@@ -71,28 +78,31 @@ public final class LTAStar
             path = GetPath(start, end);
             System.out.println("End");
             
+            ArrayList<StationRouteInfo> pathInfo = GetPathInfo(path);
             
-            ArrayList<StationRouteInfo> pathInfo = new ArrayList<>();
-            
-            for(int i = 0; i < path.size(); i++)
-            {
-                ArrayList<StationRouteInfo> pathStationRouteInfoList = path.get(i).GetStationRouteInfoList();
-                for(int j = 0; j < pathStationRouteInfoList.size(); j++)
-                {
-                    StationRouteInfo nextSRI = pathStationRouteInfoList.get(j);
-                    if (path.get(i).id.equals(nextSRI.getStationCode()))
-                    {
-                        pathInfo.add(nextSRI);
-                        break;
-                    }
-                }
-            }
             //Collections.reverse(pathInfo);
             return pathInfo;
         }
         
         
         return null;
+    }
+    
+    private static ArrayList<StationRouteInfo> GetPathInfo(ArrayList<GenericStation> stationList)
+    {
+        ArrayList<StationRouteInfo> sriArray = new ArrayList<>();
+        for(int i = 0; i < stationList.size(); i++)
+        {
+            if(stationList.get(i).parentInfo != null)
+            {
+                // Get Current SRI base on parent service number ( i = currentStation; i+1 = previousStation; )
+                sriArray.add(LTAManager.GetNextStationRouteInfo(stationList.get(i).parentInfo));
+            }
+        }
+        
+        Collections.reverse(sriArray);
+        
+        return sriArray;
     }
     
     private static ArrayList<GenericStation> GetPath(GenericStation start, GenericStation end)
@@ -106,7 +116,6 @@ public final class LTAStar
             currentStation = currentStation.parent;
         }
         path.add(currentStation);
-        Collections.reverse(path);
         
         return path;
     }

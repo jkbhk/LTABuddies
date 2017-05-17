@@ -72,6 +72,20 @@ public final class LTAManager
         }
     }
     
+        
+    public static Service GetService(String serviceNo)
+    {
+        if(ServiceHashMap.containsKey(serviceNo))
+        {
+            return ServiceHashMap.get(serviceNo);
+        }
+        else
+        {
+            System.out.println("Invalid Service Code");
+            return null;
+        }
+    }
+    
     public static boolean ContainsStationInRoute(StationRouteInfo sri, GenericStation station)
     {
         Route sriRoute = ServiceHashMap.get(sri.getServiceNo()).GetRoute(sri.getDirection() - 1);
@@ -86,6 +100,25 @@ public final class LTAManager
             Route stationRoute = stationService.GetRoute(direction - 1);
             
             StationRouteInfo nextStationRouteInfo = stationRoute.GetNextStationRouteInfo(stationSequence);
+            
+            return nextStationRouteInfo;
+        }
+        else
+        {
+            System.out.println("Invalid Service No");
+            return null;
+        }
+
+    }
+    
+    public static StationRouteInfo GetNextStationRouteInfo(StationRouteInfo curSRI)
+    {
+        if(ServiceHashMap.containsKey(curSRI.getServiceNo()))
+        {
+            Service stationService = ServiceHashMap.get(curSRI.getServiceNo());
+            Route stationRoute = stationService.GetRoute(curSRI.getDirection() - 1);
+            
+            StationRouteInfo nextStationRouteInfo = stationRoute.GetNextStationRouteInfo(curSRI.getRouteSequence());
             
             return nextStationRouteInfo;
         }
