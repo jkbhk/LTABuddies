@@ -22,7 +22,7 @@ public class LTADisplayMenu extends javax.swing.JFrame {
      * Creates new form LTADisplayMenu
      */
     private Service currentService;
-    
+
     public LTADisplayMenu() {
         initComponents();
         busInfoLabel.setOpaque(true);
