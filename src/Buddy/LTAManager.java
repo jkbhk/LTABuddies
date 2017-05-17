@@ -7,6 +7,7 @@ public final class LTAManager
 {
     public static HashMap<String, GenericStation> StationHashmap;
     public static HashMap<String,Service> ServiceHashMap;
+    
    
     private LTAManager() {}
     
@@ -144,5 +145,6 @@ public final class LTAManager
         }
     }
     
+
     
 }
