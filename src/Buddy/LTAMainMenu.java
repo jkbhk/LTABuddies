@@ -7,6 +7,7 @@ package Buddy;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -50,7 +51,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        exitButton1 = new javax.swing.JButton();
+        mrtButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         exitButton2 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -181,17 +182,22 @@ public class LTAMainMenu extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Search");
 
-        exitButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/mrt.png"))); // NOI18N
-        exitButton1.setBorder(null);
-        exitButton1.setBorderPainted(false);
-        exitButton1.setContentAreaFilled(false);
-        exitButton1.setMinimumSize(new java.awt.Dimension(150, 150));
-        exitButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        mrtButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/mrt.png"))); // NOI18N
+        mrtButton.setBorder(null);
+        mrtButton.setBorderPainted(false);
+        mrtButton.setContentAreaFilled(false);
+        mrtButton.setMinimumSize(new java.awt.Dimension(150, 150));
+        mrtButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitButton1MouseEntered(evt);
+                mrtButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitButton1MouseExited(evt);
+                mrtButtonMouseExited(evt);
+            }
+        });
+        mrtButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mrtButtonActionPerformed(evt);
             }
         });
 
@@ -229,7 +235,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mrtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(busButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
@@ -268,7 +274,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(exitButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(exitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mrtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -359,15 +365,15 @@ public class LTAMainMenu extends javax.swing.JFrame {
         mapMenu.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
 
-    private void exitButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton1MouseEntered
+    private void mrtButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mrtButtonMouseEntered
         // TODO add your handling code here:
         selectionLabel.setText("Show all MRT services");
-    }//GEN-LAST:event_exitButton1MouseEntered
+    }//GEN-LAST:event_mrtButtonMouseEntered
 
-    private void exitButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton1MouseExited
+    private void mrtButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mrtButtonMouseExited
         // TODO add your handling code here:
         ClearSelectionLabel();
-    }//GEN-LAST:event_exitButton1MouseExited
+    }//GEN-LAST:event_mrtButtonMouseExited
 
     private void exitButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton2MouseEntered
         // TODO add your handling code here:
@@ -378,6 +384,11 @@ public class LTAMainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         ClearSelectionLabel();
     }//GEN-LAST:event_exitButton2MouseExited
+
+    private void mrtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrtButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "MRT breakdown :((");
+    }//GEN-LAST:event_mrtButtonActionPerformed
 
     private void ClearSelectionLabel()
     {
@@ -432,7 +443,6 @@ public class LTAMainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton busButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JButton exitButton1;
     private javax.swing.JButton exitButton2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -445,6 +455,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton mrtButton;
     private javax.swing.JLabel selectionLabel;
     // End of variables declaration//GEN-END:variables
 }

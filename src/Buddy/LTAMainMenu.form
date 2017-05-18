@@ -60,7 +60,7 @@
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel2" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                      <Component id="exitButton1" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="mrtButton" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="jLabel7" max="32767" attributes="0"/>
                       <Component id="busButton" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -110,7 +110,7 @@
                               <Component id="exitButton2" min="-2" pref="70" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="exitButton1" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="mrtButton" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -298,7 +298,7 @@
             <Property name="text" type="java.lang.String" value="Search"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="exitButton1">
+        <Component class="javax.swing.JButton" name="mrtButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/LTAResources/mrt.png"/>
@@ -313,8 +313,9 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exitButton1MouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exitButton1MouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mrtButtonMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mrtButtonMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mrtButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
