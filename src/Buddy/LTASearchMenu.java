@@ -47,7 +47,8 @@ public class LTASearchMenu extends javax.swing.JFrame {
             
             
             if((jTextField1.getText().isEmpty())||
-                (gs.GetID().contains(jTextField1.getText()) || gs.GetName().contains(jTextField1.getText())))
+                (gs.GetID().toLowerCase().contains(jTextField1.getText().toLowerCase()) || 
+                    gs.GetName().toLowerCase().contains(jTextField1.getText().toLowerCase())))
             {
                 listModel.addElement(gs);
             }
