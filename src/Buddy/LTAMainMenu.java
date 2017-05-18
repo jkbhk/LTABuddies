@@ -27,7 +27,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
     public LTAMainMenu() {
         initComponents();
   
-        
+        LTAManager.init();
     }
     /**
      * This method is called from within the constructor to initialize the form.

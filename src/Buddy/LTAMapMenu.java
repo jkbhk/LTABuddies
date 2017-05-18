@@ -9,6 +9,7 @@ import eu.jacquet80.minigeo.MapPanel;
 import eu.jacquet80.minigeo.POI;
 import eu.jacquet80.minigeo.Point;
 import eu.jacquet80.minigeo.Segment;
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.Collection;
@@ -19,7 +20,7 @@ import java.util.Collection;
  */
 public class LTAMapMenu extends javax.swing.JFrame 
 {
-    private final MapPanel map;
+    private MapPanel map;
     /**
      * Creates new form LTAMapMenu
      */
@@ -29,9 +30,25 @@ public class LTAMapMenu extends javax.swing.JFrame
         map = new MapPanel();
         mapPanel.add(map, BorderLayout.CENTER);
         map.setSize(mapPanel.getWidth(), mapPanel.getHeight());
+        
         addSegment(new Segment(new Point(48, 2), new Point(45, -1), Color.RED));
+//        addPOI(new POI(48, 2, "START"));
+        PopulateMapPoint();
     }
 
+    public void PopulateMapPoint()
+    {
+        for(GenericStationLocationInfo gsli : LTAManager.StationLocationHashmap.values())
+        {
+            GenericStation gs = LTAManager.GetGenericStation(gsli.stationCode);
+            if(gs != null)
+            {
+                addPOI(new POI(gsli.position.y, gsli.position.x, LTAManager.GetGenericStation(gsli.stationCode).name));;
+            }
+        }
+        addPOI(new POI(10.0, 0.8, "Center"));;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +66,7 @@ public class LTAMapMenu extends javax.swing.JFrame
         jLabel3 = new javax.swing.JLabel();
         destinationField = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
         mapPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -111,17 +129,30 @@ public class LTAMapMenu extends javax.swing.JFrame
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 387, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(165, 165, 165))
         );
 
         mapPanel.setOpaque(false);
@@ -160,6 +191,11 @@ public class LTAMapMenu extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_startFieldKeyTyped
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        map.setViewAtPoint(new Vector2(103.8532247, 1.297709706));
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -195,33 +231,30 @@ public class LTAMapMenu extends javax.swing.JFrame
             }
         });
     }
-    
-    public void clear() {
-            map.clear();
-    }
-    
+
     public void addSegment(Segment segment) {
 		map.addSegment(segment);
-	}
+    }
 	
 	/**
 	 * Adds a whole collection of segments to the list of segments to display
 	 * @param segments the collection of segments to add
 	 */
-	public void addSegments(Collection<Segment> segments) {
-		map.addSegments(segments);
-	}
+    public void addSegments(Collection<Segment> segments) {
+            map.addSegments(segments);
+    }
 	
 	/**
 	 * Adds a point of interest (POI) to the list of POIs to display. 
 	 * @param poi the POI to add
 	 */
-	public void addPOI(POI poi) {
-		map.addPOI(poi);
-	}
+    public void addPOI(POI poi) {
+            map.addPOI(poi);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField destinationField;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

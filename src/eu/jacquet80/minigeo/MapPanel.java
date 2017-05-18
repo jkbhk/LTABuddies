@@ -1,5 +1,6 @@
 package eu.jacquet80.minigeo;
 
+import Buddy.Vector2;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -22,8 +23,11 @@ public class MapPanel extends JPanel {
 	private final List<Segment> segments = new ArrayList<Segment>();
 	private final List<POI> pois = new ArrayList<POI>();
 	private double minEasting, maxEasting, minNorthing, maxNorthing;
-	private double oEasting, oNorthing;		// coordinates of the origin
-	private double scale = -1;
+	private double oEasting;
+        private double oNorthing;		// coordinates of the origin
+	private double scale;
+        public final int pointSize = 5;
+        public final Color pointColor = Color.BLUE;
 	
 	public MapPanel() {
 		setMinimumSize(new Dimension(400, 300));
@@ -68,15 +72,16 @@ public class MapPanel extends JPanel {
 					convertX(pB.getEasting()), convertY(pB.getNorthing(), h));
 		}
 		
-		g.setColor(Color.BLACK);
+		
 		
 		for(POI poi : pois) {
 			int x = convertX(poi.getEasting());
 			int y = convertY(poi.getNorthing(), h);
-			g.fillOval(x-1, y-1, 3, 3);
+                        g.setColor(pointColor);
+			g.fillOval(x-1, y-1, pointSize, pointSize);
 			g.drawString(poi.getLabel(), x, y);
 		}
-		
+		g.setColor(Color.BLACK);
 		// unit is the unit of the scale. It must be a power of ten, such that unit * scale in [25, 250]
 		double unit = Math.pow(10, Math.ceil(Math.log10(25/scale)));
 		String strUnit;
@@ -106,6 +111,7 @@ public class MapPanel extends JPanel {
 	public void addSegments(Collection<Segment> segments) {
 		for(Segment seg : segments) addSegment(seg);
 	}
+        
 	
 	public synchronized void addPOI(POI poi) {
 		this.pois.add(poi);
@@ -126,22 +132,36 @@ public class MapPanel extends JPanel {
 	private synchronized void resetMinMaxEastingNorthing() {
 		minEasting = Double.MAX_VALUE;
 		maxEasting = Double.MIN_VALUE;
-		minNorthing = Double.MAX_VALUE;
+		minNorthing =  Double.MAX_VALUE;
 		maxNorthing = Double.MIN_VALUE;
-		
 		this.scale = -1;
 	}
+        
+        public void setViewAtPoint(Vector2 position)
+        {
+            System.out.println("East/North: " + oEasting + " : " + oNorthing);
+            System.out.println("Scale: " + scale);
+            
+            //oEasting = convertX(position.x)+ 22160.0;
+//            oNorthing = convertY(position.y, getHeight())+ 5.0;
+        }
+        
+        public void resetScale()
+        {
+            scale = -1;
+        }
 	
 	private synchronized void scale() {
-		int w = getWidth();
-		int h = getHeight();
+		int w = getWidth() ;//* 700;
+		int h = getHeight() ;//* 700;
 		
 		this.scale = Math.min(
 				w / (maxEasting - minEasting),
 				h / (maxNorthing - minNorthing));
 		
-		oEasting = minEasting;
-		oNorthing = minNorthing;
+                
+		oEasting = minEasting ;//+ 22160.0;
+		oNorthing = minNorthing;// + 20.0;
 	}
 	
 	private int applyScale(double km) {
@@ -164,12 +184,13 @@ public class MapPanel extends JPanel {
 			double oldScale = scale;
 			
 			int rotation = e.getWheelRotation();
+                        
+                        
 			if(rotation > 0) {
 				scale /= (1 + rotation * zoomFactor);
 			} else {
 				scale *= (1 - rotation * zoomFactor);
 			}
-			
 			// When zooming, the easting/northing at the cursor position must
 			// remain the same, so we have to pan in addition to changing the
 			// scale. The maths for easting (same goes for northing):

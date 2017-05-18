@@ -23,4 +23,9 @@ public class POI extends Point {
 	public String getLabel() {
 		return label;
 	}
+        
+        public void setColor()
+        {
+            
+        }
 }

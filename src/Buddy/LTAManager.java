@@ -7,7 +7,7 @@ public final class LTAManager
 {
     public static HashMap<String, GenericStation> StationHashmap;
     public static HashMap<String,Service> ServiceHashMap;
-    
+    public static HashMap<String, GenericStationLocationInfo> StationLocationHashmap;
    
     private LTAManager() {}
     
@@ -15,30 +15,38 @@ public final class LTAManager
     {
         StationHashmap = new HashMap<>();
         ServiceHashMap = new HashMap<>();
+        StationLocationHashmap = new HashMap<>();
+        
         GenericFileReader fileReader = new GenericFileReader();
         ArrayList<BusStation> allBusStations = fileReader.ReadBusStopCode();
-        ArrayList<StationRouteInfo> allRouteInfo = fileReader.ReadRouteInfoCode();
+        ArrayList<StationRouteInfo> allBusRouteInfo = fileReader.ReadBusRouteInfoCode();
+        ArrayList<GenericStationLocationInfo> allBusStationLocation = fileReader.ReadStationLocation();
         
-        UpdateBusStationInfo(allBusStations, allRouteInfo);
+        UpdateBusStationInfo(allBusStations, allBusRouteInfo);
         
-        // Populate hashmaps
+        // Populate BusStation to StationHashmap
         for (int i = 0; i < allBusStations.size(); i++)
         {
             StationHashmap.put(allBusStations.get(i).GetID(), allBusStations.get(i));
         }
         
-        
+        // Populate BusStationLocation to LocationHashmap
+        for (int i = 0; i < allBusStationLocation.size(); i++)
+        {
+            StationLocationHashmap.put(allBusStationLocation.get(i).stationCode, allBusStationLocation.get(i));
+        }
+        // Populate BusServices to ServiceHashmap
         ArrayList<Service> allService = new ArrayList<>();
         Service tempService = new Service();
         Route someRoute = new Route();
  
-        for (int i = 0; i < allRouteInfo.size(); i++)
+        for (int i = 0; i < allBusRouteInfo.size(); i++)
         {
-            StationRouteInfo currentSRI = allRouteInfo.get(i);
+            StationRouteInfo currentSRI = allBusRouteInfo.get(i);
             StationRouteInfo nextSRI = null;
     
-            if(i+1 < allRouteInfo.size())
-                nextSRI = allRouteInfo.get(i+1);
+            if(i+1 < allBusRouteInfo.size())
+                nextSRI = allBusRouteInfo.get(i+1);
     
             someRoute.GetStationsToDistRef().add(currentSRI);  
  

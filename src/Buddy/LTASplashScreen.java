@@ -103,7 +103,7 @@ public class LTASplashScreen extends javax.swing.JFrame {
             
             LTAMainMenu menu = new LTAMainMenu();
             menu.setVisible(true);
-            SplashScreen.setVisible(false);
+            SplashScreen.dispose();
             
             
             

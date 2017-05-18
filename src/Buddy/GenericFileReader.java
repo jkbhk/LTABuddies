@@ -9,6 +9,7 @@ public class GenericFileReader
 {
     private final String busStopPath = "Data/lta-bus_stop_codes.csv";
     private final String routePath = "Data/lta-sbst_route.csv";;
+    private final String busStopLocationPath = "Data/lta-bus_stop_locations.csv";;
     private final String delimiter = ",";
     private String line = "";
     private BufferedReader buffer;
@@ -58,7 +59,7 @@ public class GenericFileReader
     
    
     
-    public ArrayList<StationRouteInfo> ReadRouteInfoCode()
+    public ArrayList<StationRouteInfo> ReadBusRouteInfoCode()
     {
         ArrayList<StationRouteInfo> allRouteInfo = new ArrayList<>();
         
@@ -118,4 +119,48 @@ public class GenericFileReader
         
         return allRouteInfo;
     }
+    
+    public ArrayList<GenericStationLocationInfo> ReadStationLocation()
+    {
+        ArrayList<GenericStationLocationInfo> allLocationInfo = new ArrayList<>();
+        
+        try
+        {
+            buffer = new BufferedReader(new FileReader(busStopLocationPath));
+            
+            while ((line = buffer.readLine()) != null)
+            {
+                String[] busStopLocation = line.split(delimiter);
+                
+                if(busStopLocation[0].contains("X"))
+                {
+                    continue;
+                }
+                Vector2 position = new Vector2(Double.parseDouble(busStopLocation[0]), Double.parseDouble(busStopLocation[1]));
+                
+                allLocationInfo.add(new GenericStationLocationInfo(busStopLocation[2], position, busStopLocation[3]));
+            }
+        }
+        catch (Exception e)
+        {
+            //e.printStackTrace();
+            System.out.println("Bus Station Error");
+        }
+        finally
+        {
+            if (buffer != null)
+            {
+                try
+                {
+                    buffer.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        return allLocationInfo;
+    } 
 }
