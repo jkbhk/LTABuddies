@@ -63,6 +63,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel2.setBackground(new java.awt.Color(204, 0, 153));
 
@@ -93,6 +94,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         busButton.setBorder(null);
         busButton.setBorderPainted(false);
         busButton.setContentAreaFilled(false);
+        busButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         busButton.setMinimumSize(new java.awt.Dimension(0, 0));
         busButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -112,6 +114,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         jButton2.setBorder(null);
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setMaximumSize(new java.awt.Dimension(150, 150));
         jButton2.setMinimumSize(new java.awt.Dimension(150, 150));
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -130,6 +133,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton1MouseEntered(evt);
@@ -148,6 +152,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         exitButton.setBorder(null);
         exitButton.setBorderPainted(false);
         exitButton.setContentAreaFilled(false);
+        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.setMinimumSize(new java.awt.Dimension(150, 150));
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -186,6 +191,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         mrtButton.setBorder(null);
         mrtButton.setBorderPainted(false);
         mrtButton.setContentAreaFilled(false);
+        mrtButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mrtButton.setMinimumSize(new java.awt.Dimension(150, 150));
         mrtButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -203,12 +209,13 @@ public class LTAMainMenu extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("FAQs");
+        jLabel6.setText("About");
 
         exitButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/question-mark.png"))); // NOI18N
         exitButton2.setBorder(null);
         exitButton2.setBorderPainted(false);
         exitButton2.setContentAreaFilled(false);
+        exitButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton2.setMinimumSize(new java.awt.Dimension(150, 150));
         exitButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -377,7 +384,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
 
     private void exitButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton2MouseEntered
         // TODO add your handling code here:
-        selectionLabel.setText("Frequently asked questions");
+        selectionLabel.setText("What is this???");
     }//GEN-LAST:event_exitButton2MouseEntered
 
     private void exitButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton2MouseExited
