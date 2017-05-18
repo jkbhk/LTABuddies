@@ -70,7 +70,7 @@
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel6" min="-2" pref="70" max="-2" attributes="0"/>
-                      <Component id="exitButton2" min="-2" pref="70" max="-2" attributes="0"/>
+                      <Component id="aboutButton" min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
@@ -110,7 +110,7 @@
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="exitButton" min="-2" pref="70" max="-2" attributes="0"/>
-                              <Component id="exitButton2" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="aboutButton" min="-2" pref="70" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="mrtButton" min="-2" pref="70" max="-2" attributes="0"/>
@@ -345,7 +345,7 @@
             <Property name="text" type="java.lang.String" value="About"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="exitButton2">
+        <Component class="javax.swing.JButton" name="aboutButton">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/LTAResources/question-mark.png"/>
@@ -363,8 +363,9 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exitButton2MouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exitButton2MouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="aboutButtonMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="aboutButtonMouseExited"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aboutButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">

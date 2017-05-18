@@ -12,6 +12,8 @@ import eu.jacquet80.minigeo.Segment;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -20,6 +22,11 @@ import java.util.Collection;
  */
 public class LTAMapMenu extends javax.swing.JFrame 
 {
+    public static enum Field{START,DEST};
+    
+    private GenericStation startStation;
+    private GenericStation destStation;
+    
     private final MapPanel map;
     /**
      * Creates new form LTAMapMenu
@@ -61,9 +68,15 @@ public class LTAMapMenu extends javax.swing.JFrame
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Start");
 
+        startField.setEditable(false);
         startField.setBackground(new java.awt.Color(66, 133, 244));
         startField.setForeground(new java.awt.Color(255, 255, 255));
         startField.setBorder(null);
+        startField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                startFieldMouseClicked(evt);
+            }
+        });
         startField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 startFieldKeyTyped(evt);
@@ -73,9 +86,15 @@ public class LTAMapMenu extends javax.swing.JFrame
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("End");
 
+        destinationField.setEditable(false);
         destinationField.setBackground(new java.awt.Color(66, 133, 244));
         destinationField.setForeground(new java.awt.Color(255, 255, 255));
         destinationField.setBorder(null);
+        destinationField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                destinationFieldMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -161,6 +180,37 @@ public class LTAMapMenu extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_startFieldKeyTyped
 
+    private void startFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startFieldMouseClicked
+        // TODO add your handling code here:
+        LTASearchMenu searchMenu = new LTASearchMenu(this,Field.START);
+        searchMenu.setVisible(true);
+        
+    }//GEN-LAST:event_startFieldMouseClicked
+
+    private void destinationFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_destinationFieldMouseClicked
+        // TODO add your handling code here:
+        LTASearchMenu searchMenu = new LTASearchMenu(this,Field.DEST);
+        searchMenu.setVisible(true);
+    }//GEN-LAST:event_destinationFieldMouseClicked
+
+    public void UpdateGUI(GenericStation gs,Field f)
+    {
+        
+        
+        if(f.equals(Field.START))
+        {
+            startStation = gs;
+           startField.setText(startStation.GetName()); 
+        }
+        else if(f.equals(Field.DEST))
+        {     
+            destStation = gs;
+           destinationField.setText(destStation.GetName()); 
+        }
+
+                
+    }
+    
     /**
      * @param args the command line arguments
      */

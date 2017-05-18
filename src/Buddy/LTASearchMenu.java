@@ -18,6 +18,11 @@ import javax.swing.JToggleButton;
  */
 public class LTASearchMenu extends javax.swing.JFrame {
 
+    private LTAMapMenu mapMenu;
+    private LTAMapMenu.Field field;
+    private GenericStation gs;
+    private enum Mode {INFO,SELECTION};
+    private Mode mode;
     private DefaultListModel listModel = new DefaultListModel();
     private final int minSearchLength = 0;
     
@@ -26,8 +31,25 @@ public class LTASearchMenu extends javax.swing.JFrame {
      */
     public LTASearchMenu() 
     {
+        mode = Mode.INFO;
         initComponents();
         FilterSearch();
+    }
+    
+    public LTASearchMenu(LTAMapMenu ltaMap,LTAMapMenu.Field field) 
+    {
+        this.field = field;
+        this.mapMenu = ltaMap;
+        this.gs = gs;
+        mode = Mode.SELECTION;
+        initComponents();
+        FilterSearch();
+        
+    }
+    
+    public GenericStation GetGenericS()
+    {
+        return gs;
     }
 
     /**
@@ -55,6 +77,7 @@ public class LTASearchMenu extends javax.swing.JFrame {
         }
 
         resultList.setModel(listModel);
+        
         resultList.setCellRenderer(new DefaultListCellRenderer()
                 {
                     @Override
@@ -82,6 +105,8 @@ public class LTASearchMenu extends javax.swing.JFrame {
         
     }
     
+   
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -103,6 +128,11 @@ public class LTASearchMenu extends javax.swing.JFrame {
         resultList.setBackground(new java.awt.Color(51, 51, 51));
         resultList.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         resultList.setForeground(new java.awt.Color(255, 255, 255));
+        resultList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resultListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(resultList);
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -191,6 +221,28 @@ public class LTASearchMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         FilterSearch();
     }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void resultListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resultListMouseClicked
+        // TODO add your handling code here:
+        JList list = (JList)evt.getSource();
+        if (evt.getClickCount() == 2) {
+            int index = list.locationToIndex(evt.getPoint());  
+
+            if(mode.equals(Mode.INFO))
+            {
+                LTAStopMenu sm = new LTAStopMenu((GenericStation)resultList.getSelectedValue());
+                sm.setVisible(true);
+            }
+            else if (mode.equals(Mode.SELECTION))
+            {
+
+                mapMenu.UpdateGUI((GenericStation)resultList.getSelectedValue(),field);
+                dispose();
+            }
+
+
+        }
+    }//GEN-LAST:event_resultListMouseClicked
 
     /**
      * @param args the command line arguments

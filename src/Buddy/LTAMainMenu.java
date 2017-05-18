@@ -53,7 +53,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         mrtButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        exitButton2 = new javax.swing.JButton();
+        aboutButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -211,18 +211,23 @@ public class LTAMainMenu extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("About");
 
-        exitButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/question-mark.png"))); // NOI18N
-        exitButton2.setBorder(null);
-        exitButton2.setBorderPainted(false);
-        exitButton2.setContentAreaFilled(false);
-        exitButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exitButton2.setMinimumSize(new java.awt.Dimension(150, 150));
-        exitButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        aboutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LTAResources/question-mark.png"))); // NOI18N
+        aboutButton.setBorder(null);
+        aboutButton.setBorderPainted(false);
+        aboutButton.setContentAreaFilled(false);
+        aboutButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        aboutButton.setMinimumSize(new java.awt.Dimension(150, 150));
+        aboutButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitButton2MouseEntered(evt);
+                aboutButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitButton2MouseExited(evt);
+                aboutButtonMouseExited(evt);
+            }
+        });
+        aboutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutButtonActionPerformed(evt);
             }
         });
 
@@ -248,7 +253,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exitButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(aboutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -280,7 +285,7 @@ public class LTAMainMenu extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(exitButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(aboutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(mrtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -382,20 +387,25 @@ public class LTAMainMenu extends javax.swing.JFrame {
         ClearSelectionLabel();
     }//GEN-LAST:event_mrtButtonMouseExited
 
-    private void exitButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton2MouseEntered
+    private void aboutButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutButtonMouseEntered
         // TODO add your handling code here:
         selectionLabel.setText("What is this???");
-    }//GEN-LAST:event_exitButton2MouseEntered
+    }//GEN-LAST:event_aboutButtonMouseEntered
 
-    private void exitButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButton2MouseExited
+    private void aboutButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aboutButtonMouseExited
         // TODO add your handling code here:
         ClearSelectionLabel();
-    }//GEN-LAST:event_exitButton2MouseExited
+    }//GEN-LAST:event_aboutButtonMouseExited
 
     private void mrtButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mrtButtonActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(rootPane, "MRT breakdown :((");
     }//GEN-LAST:event_mrtButtonActionPerformed
+
+    private void aboutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutButtonActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "This application is made by: \n\nJonathan\nYue Peng");
+    }//GEN-LAST:event_aboutButtonActionPerformed
 
     private void ClearSelectionLabel()
     {
@@ -448,9 +458,9 @@ public class LTAMainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aboutButton;
     private javax.swing.JButton busButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JButton exitButton2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
