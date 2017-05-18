@@ -192,8 +192,7 @@ public class MapPanel extends JPanel {
         
         public void resetScale()
         {
-            System.out.println(scale);
-            scale = 100;
+            scale = 500;
             repaint();
         }
 	

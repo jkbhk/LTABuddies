@@ -17,6 +17,16 @@ public class StationRouteInfo
         this.distFromStart = distFromStart;
     }
     
+    public StationRouteInfo(StationRouteInfo connectedSRI, String stationCode)
+    {
+        this.serviceNo = "*";
+        this.direction = 0;
+        this.routeSequence = 0;
+        this.stationCode = stationCode;
+        this.distFromStart = connectedSRI.distFromStart;
+
+    }
+    
     public String getServiceNo() 
     {
         return serviceNo;

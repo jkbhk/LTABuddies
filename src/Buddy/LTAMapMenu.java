@@ -117,6 +117,13 @@ public class LTAMapMenu extends javax.swing.JFrame {
 
     }
     
+    public void ResetMap()
+    {
+        map.clear();
+        PopulateMapPoint();
+        map.resetScale();
+    }
+    
     public void PlotRouteGraph(ArrayList<StationRouteInfo> allSRI, Color lineColor, boolean pEnable)
     {
         POI previousGSLIPOI = null;
@@ -149,7 +156,7 @@ public class LTAMapMenu extends javax.swing.JFrame {
                 
                 if(previousSRI != null)
                 {
-                    poiName += previousSRI.getServiceNo() + " > ";
+                    poiName += "Transfer: " + previousSRI.getServiceNo() + " > ";
                 }
                 
                 poiName += (i == 0) ? "Start - " : "";
@@ -405,7 +412,9 @@ public class LTAMapMenu extends javax.swing.JFrame {
     private void jResetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResetButtonActionPerformed
 
         // TODO add your handling code here:
-        map.setViewAtPoint(new Vector2(103.7783793, 1.311225845));
+        //map.setViewAtPoint(new Vector2(103.7783793, 1.311225845));
+
+        ResetMap();
        
     }//GEN-LAST:event_jResetButtonActionPerformed
 
@@ -438,6 +447,8 @@ public class LTAMapMenu extends javax.swing.JFrame {
             ArrayList<StationRouteInfo> info = LTAStar.FindPath(startStation, destStation, ptf);
             PopulateRouteList(info);
 
+            ResetMap();
+            
             map.setViewAtPoint(LTAManager.StationLocationHashmap.get(startStation.GetID()).position);
 
             PlotRouteGraph(info, Color.BLUE, false);
