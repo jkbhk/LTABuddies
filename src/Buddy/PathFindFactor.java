@@ -12,7 +12,6 @@ package Buddy;
 public enum PathFindFactor 
 {
     BESTROUTE,
-    TIME,
     DISTANCE,
     LEASTTRANSFER,
     SHORTESTNOOFSTATION,

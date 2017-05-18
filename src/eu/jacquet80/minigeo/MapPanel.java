@@ -26,9 +26,9 @@ public class MapPanel extends JPanel {
 	private double oEasting;
         private double oNorthing;		// coordinates of the origin
 	private double scale;
-        public final int pointSize = 5;
-        public final Color pointColor = Color.BLUE;
-	
+        public int pointSize = 10;
+        
+        
 	public MapPanel() {
 		setMinimumSize(new Dimension(400, 300));
 		setPreferredSize(new Dimension(800, 600));
@@ -56,29 +56,54 @@ public class MapPanel extends JPanel {
 		
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, w, h);
-		
-		if(segments.size() == 0) return;
+		                		
+                w = getWidth() / 2;
+		h = getHeight() / 2;
+                
 		if(this.scale == -1) scale();
-		
-		for(Segment seg : segments) {
-			Point pA = seg.getPointA();
-			Point pB = seg.getPointB();
-			
-			g.setColor(seg.getColor());
-			g.setStroke(seg.getStroke());
-			
-			g.drawLine(
-					convertX(pA.getEasting()), convertY(pA.getNorthing(), h),
-					convertX(pB.getEasting()), convertY(pB.getNorthing(), h));
-		}
-		
-		
+		if(segments.size() != 0)
+                    for(Segment seg : segments) 
+                    {
+                        Point pA = seg.getPointA();
+                        Point pB = seg.getPointB();
+
+                        g.setColor(seg.getColor());
+                        g.setStroke(seg.getStroke());
+                        
+                        int x1 = convertX(pA.getEasting(), w);
+			int y1 = convertY(pA.getNorthing(), h) + 5;
+                        
+                        int x2 = convertX(pB.getEasting(), w);
+			int y2 = convertY(pB.getNorthing(), h) + 5;
+                                                
+                        g.drawLine(x1, y1, x2, y2);
+                        
+                        if (seg.pEnable)
+                        {
+                            g.setColor(Color.ORANGE);
+                            g.fill3DRect((((x1 + x2)/2) + x2) /2, (((y1 + y2)/2) + y2) /2, pointSize, pointSize, true);
+                        }
+
+                    }
+
 		
 		for(POI poi : pois) {
-			int x = convertX(poi.getEasting());
+			int x = convertX(poi.getEasting(), w);
 			int y = convertY(poi.getNorthing(), h);
-                        g.setColor(pointColor);
-			g.fillOval(x-1, y-1, pointSize, pointSize);
+                        g.setColor(poi.pointColor);
+			g.fillOval(x-1, y-1, poi.pointSize, poi.pointSize);
+                        
+                        
+                        Color tempColor = Color.BLACK;
+                        
+                        if(poi.nodeType == Point.NodeType.NODE)
+                        {
+                            x += 20;
+                            y -= 20;
+                            tempColor = Color.RED;
+                        }
+                        
+                        g.setColor(tempColor);
 			g.drawString(poi.getLabel(), x, y);
 		}
 		g.setColor(Color.BLACK);
@@ -139,21 +164,42 @@ public class MapPanel extends JPanel {
         
         public void setViewAtPoint(Vector2 position)
         {
-            System.out.println("East/North: " + oEasting + " : " + oNorthing);
-            System.out.println("Scale: " + scale);
+            POI tempPOI = new POI(position.y, position.x, "");
+            
+            scale = 650;
+            
+            oEasting = tempPOI.getEasting();
+            oNorthing = tempPOI.getNorthing();
+            //oEasting = convertX(position.x)+ 22160.0;
+//            oNorthing = convertY(position.y, getHeight())+ 5.0;
+            repaint();
+        }
+        
+        public void setViewAtPoints(Vector2 pos1, Vector2 pos2)
+        {
+            POI tempPOI1 = new POI(pos1.y, pos1.x, "");
+            POI tempPOI2 = new POI(pos2.y, pos2.x, "");
+            
+            oEasting = (tempPOI1.getEasting() + tempPOI2.getEasting()) / 2;
+            oNorthing = (tempPOI1.getNorthing() + tempPOI2.getNorthing()) / 2;
+            
+            scale = (50/ tempPOI1.distanceTo(tempPOI2));
             
             //oEasting = convertX(position.x)+ 22160.0;
 //            oNorthing = convertY(position.y, getHeight())+ 5.0;
+            repaint();
         }
         
         public void resetScale()
         {
-            scale = -1;
+            System.out.println(scale);
+            scale = 100;
+            repaint();
         }
 	
 	private synchronized void scale() {
-		int w = getWidth() ;//* 700;
-		int h = getHeight() ;//* 700;
+		int w = getWidth()/2 * 700;
+		int h = getHeight()/2 * 700;
 		
 		this.scale = Math.min(
 				w / (maxEasting - minEasting),
@@ -170,6 +216,9 @@ public class MapPanel extends JPanel {
 	
 	private int convertX(double easting) {
 		return applyScale(easting - oEasting);
+	}	
+        private int convertX(double easting, int width) {
+		return width + applyScale(easting - oEasting);
 	}
 	
 	private int convertY(double northing, int height) {
@@ -205,9 +254,10 @@ public class MapPanel extends JPanel {
 			// hence finally: newOEasting = oEasting + x * (1/oldScale - 1/scale)
 			int x = e.getX();
 			int y = e.getY();
-			int h = getHeight();
+                        int w = getWidth()/2;
+			int h = getHeight()/2;
 			
-			oEasting = oEasting + x * (1/oldScale - 1/scale);
+			oEasting = oEasting + (x- w) * (1/oldScale - 1/scale);
 			oNorthing = oNorthing + (h - y) * (1/oldScale - 1/scale);
 			
 			//System.out.println(rotation + " => " + scale);

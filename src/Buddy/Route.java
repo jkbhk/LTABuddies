@@ -7,6 +7,10 @@ import java.util.ArrayList;
 public class Route 
 {
     private ArrayList<StationRouteInfo> stations;
+
+    public ArrayList<StationRouteInfo> getAllStationRouteInfo() {
+        return stations;
+    }
             
     //Constructor
     public Route(ArrayList<StationRouteInfo> stations)

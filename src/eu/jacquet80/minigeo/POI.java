@@ -1,5 +1,7 @@
 package eu.jacquet80.minigeo;
 
+import java.awt.Color;
+
 
 /**
  * Geographic point, defined by its coordinates and by a label.
@@ -23,9 +25,4 @@ public class POI extends Point {
 	public String getLabel() {
 		return label;
 	}
-        
-        public void setColor()
-        {
-            
-        }
 }

@@ -1,5 +1,6 @@
 package eu.jacquet80.minigeo;
 
+import java.awt.Color;
 import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 import static java.lang.Math.pow;
@@ -18,6 +19,11 @@ public class Point {
 	private final double longitude;
 	private final double easting;
 	private final double northing;
+        
+        public int pointSize = 10;
+        public Color pointColor = Color.DARK_GRAY;
+        public enum NodeType {POINT, NODE};
+	public NodeType nodeType = NodeType.POINT;
 	
 	// We need to use a single "reference meridian" for all points, for the
 	// projection to be meaningful. We use the first point's longitude for

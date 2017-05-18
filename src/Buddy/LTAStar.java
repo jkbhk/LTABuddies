@@ -123,15 +123,26 @@ public final class LTAStar
     private static ArrayList<StationRouteInfo> GetPathInfo(ArrayList<GenericStation> stationList)
     {
         ArrayList<StationRouteInfo> sriArray = new ArrayList<>();
+        
         for(int i = 0; i < stationList.size(); i++)
         {
-            if(stationList.get(i).parentInfo != null)
+            if(i+1 < stationList.size() && stationList.get(i).parentInfo != null)
             {
                 // Get Current SRI base on parent service number ( i = currentStation; i+1 = previousStation; )
-                sriArray.add(LTAManager.GetNextStationRouteInfo(stationList.get(i).parentInfo));
+                StationRouteInfo currentSRI = LTAManager.GetNextStationRouteInfo(stationList.get(i).parentInfo);
+                sriArray.add(currentSRI);
+            }
+            if(i+1 < stationList.size() && stationList.get(i).parentInfo != null)
+            {
+                sriArray.add(stationList.get(i).parentInfo);
             }
         }
         
+//        for(StationRouteInfo gs : sriArray)
+//        {
+//            System.out.println(gs.getStationCode());
+//        }
+//        
         Collections.reverse(sriArray);
         
         return sriArray;
@@ -148,6 +159,11 @@ public final class LTAStar
             currentStation = currentStation.parent;
         }
         path.add(currentStation);
+        
+        for(GenericStation gs : path)
+        {
+            System.out.println(gs.name);
+        }
         
         return path;
     }

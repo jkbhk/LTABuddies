@@ -11,11 +11,12 @@ import java.awt.Stroke;
  *
  */
 public class Segment {
-	private final static Stroke BASIC_STROKE = new BasicStroke();
+	private final static Stroke BASIC_STROKE = new BasicStroke(3);
 	
 	private final Point pointA, pointB;
 	private final Color color;
 	private final Stroke stroke;
+        public boolean pEnable = true; //arrow;
 	
 	/**
 	 * Creates a new segment.

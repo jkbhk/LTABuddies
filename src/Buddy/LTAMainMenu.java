@@ -447,15 +447,6 @@ public class LTAMainMenu extends javax.swing.JFrame {
             }
         });
     }
-    
-    public static double round(double value, int places) 
-    {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aboutButton;
