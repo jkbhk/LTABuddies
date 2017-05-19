@@ -131,7 +131,12 @@ public class LTAMapMenu extends javax.swing.JFrame {
         {
             GenericStationLocationInfo gsli = LTAManager.StationLocationHashmap.get(sri.getStationCode());
 
-            POI currentPOI = new POI(gsli.position.y, gsli.position.x, LTAManager.GetGenericStation(gsli.stationCode).name);
+            if(gsli == null)
+            {
+                System.out.println(sri.getServiceNo() + " : " + sri.getRouteSequence() + " : " + sri.getStationCode());
+            }
+            
+            POI currentPOI = new POI(gsli.position.y, gsli.position.x, LTAManager.GetGenericStation(sri.getStationCode()).name);
 
             if (previousGSLIPOI != null)
             {

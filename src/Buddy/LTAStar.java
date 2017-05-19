@@ -11,6 +11,7 @@ public final class LTAStar
     
     public static ArrayList<StationRouteInfo> FindPath(GenericStation start, GenericStation end, PathFindFactor selectedFactor)
     {
+        start.startCost = 0;
         System.out.println("Start");
         boolean isFound = false;
         
@@ -132,7 +133,7 @@ public final class LTAStar
                 StationRouteInfo currentSRI = LTAManager.GetNextStationRouteInfo(stationList.get(i).parentInfo);
                 sriArray.add(currentSRI);
             }
-            if(i+1 < stationList.size() && stationList.get(i).parentInfo != null)
+            if(i == stationList.size() - 2 && stationList.get(i).parentInfo != null)
             {
                 sriArray.add(stationList.get(i).parentInfo);
             }

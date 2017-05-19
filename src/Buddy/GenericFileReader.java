@@ -8,7 +8,8 @@ import java.util.*;
 public class GenericFileReader 
 {
     private final String busStopPath = "Data/lta-bus_stop_codes.csv";
-    private final String routePath = "Data/lta-sbst_route.csv";;
+    private final String sbsRoutePath = "Data/lta-sbst_route.csv";;
+    private final String smrtRoutePath = "Data/lta-smrt_route.csv";
     private final String busStopLocationPath = "Data/lta-bus_stop_locations.csv";;
     private final String delimiter = ",";
     private String line = "";
@@ -59,7 +60,7 @@ public class GenericFileReader
     
    
     
-    public ArrayList<StationRouteInfo> ReadBusRouteInfoCode()
+    public ArrayList<StationRouteInfo> ReadSBSTBusRouteInfoCode()
     {
         ArrayList<StationRouteInfo> allRouteInfo = new ArrayList<>();
         
@@ -67,7 +68,7 @@ public class GenericFileReader
         
         try
         {
-            buffer = new BufferedReader(new FileReader(routePath));
+            buffer = new BufferedReader(new FileReader(sbsRoutePath));
             
             while ((line = buffer.readLine()) != null)
             {
@@ -119,6 +120,68 @@ public class GenericFileReader
         
         return allRouteInfo;
     }
+    
+    public ArrayList<StationRouteInfo> ReadSMRTBusRouteInfoCode()
+    {
+        ArrayList<StationRouteInfo> allRouteInfo = new ArrayList<>();
+        
+        int offset = 0;
+        
+        try
+        {
+            buffer = new BufferedReader(new FileReader(smrtRoutePath));
+            
+            while ((line = buffer.readLine()) != null)
+            {
+                String[] myStrArr = line.split(delimiter);
+                
+                if(myStrArr[0].contains("SVC_NUM"))
+                {
+                    continue;
+                }
+                
+                if (myStrArr[4].contains("-"))
+                {
+                    offset--;
+                    continue;
+                }
+                else if (myStrArr[2].equals("1"))
+                {
+                    offset = 0;
+                }
+                
+                StationRouteInfo newInfo = new StationRouteInfo(myStrArr[0], Integer.parseInt(myStrArr[1]), Integer.parseInt(myStrArr[2]) + offset,
+                        myStrArr[3], Double.parseDouble(myStrArr[4]));
+                allRouteInfo.add(newInfo);
+                
+//                System.out.println( newInfo.getServiceNo() + "," + newInfo.getDirection()+ "," + newInfo.getStationCode() + "," + newInfo.getRouteSequence() + "," + newInfo.getDistFromStart());
+                 
+                
+            }
+        }
+        catch (Exception e)
+        {
+            //e.printStackTrace();
+            System.out.println("Route Info Error");
+        }
+        finally
+        {
+            if (buffer != null)
+            {
+                try
+                {
+                    buffer.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        return allRouteInfo;
+    }
+    
     
     public ArrayList<GenericStationLocationInfo> ReadStationLocation()
     {

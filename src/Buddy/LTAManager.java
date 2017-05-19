@@ -21,8 +21,15 @@ public final class LTAManager
         
         GenericFileReader fileReader = new GenericFileReader();
         ArrayList<BusStation> allBusStations = fileReader.ReadBusStopCode();
-        ArrayList<StationRouteInfo> allBusRouteInfo = fileReader.ReadBusRouteInfoCode();
+        ArrayList<StationRouteInfo> allSBSTBusRouteInfo = fileReader.ReadSBSTBusRouteInfoCode();
+        ArrayList<StationRouteInfo> allSMRTBusRouteInfo = fileReader.ReadSMRTBusRouteInfoCode();
         ArrayList<GenericStationLocationInfo> allBusStationLocation = fileReader.ReadStationLocation();
+        
+        ArrayList<StationRouteInfo> allBusRouteInfo = new ArrayList<>();
+        allBusRouteInfo.addAll(allSBSTBusRouteInfo);
+
+
+        allBusRouteInfo.addAll(allSMRTBusRouteInfo);
         
         UpdateBusStationInfo(allBusStations, allBusRouteInfo);
          
@@ -48,17 +55,21 @@ public final class LTAManager
             StationRouteInfo nextSRI = null;
     
             if(i+1 < allBusRouteInfo.size())
+            {
                 nextSRI = allBusRouteInfo.get(i+1);
-    
+            }
+            
             someRoute.GetStationsToDistRef().add(currentSRI);  
- 
+            
+            //System.out.println(currentSRI.getServiceNo() + " : " + currentSRI.getStationCode());
     
             if(nextSRI == null || nextSRI.getRouteSequence() < currentSRI.getRouteSequence())
-            {
+            {                
+                
                 tempService.GetRouteList().add(someRoute);
 
                 someRoute = new Route();
-
+                
                 if(nextSRI == null || !currentSRI.getServiceNo().equals(nextSRI.getServiceNo()))
                 {
                     tempService.SetServiceCode(currentSRI.getServiceNo());
