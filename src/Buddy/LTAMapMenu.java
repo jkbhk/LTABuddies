@@ -171,16 +171,16 @@ public class LTAMapMenu extends javax.swing.JFrame {
                 addPOI(currentPOI);
             }
             
-//            if(i == allSRI.size() - 1)
-//            {
-//                GenericStationLocationInfo gsli = LTAManager.StationLocationHashmap.get(currentSRI.getStationCode());
-//                
-//                POI currentPOI = new POI(gsli.position.y, gsli.position.x, "Destination");
-//                currentPOI.nodeType = Point.NodeType.NODE;
-//                currentPOI.pointColor = Color.BLUE;
-//                currentPOI.pointSize = 30;
-//                addPOI(currentPOI);
-//            }
+            if(i == allSRI.size() - 1)
+            {
+                GenericStationLocationInfo gsli = LTAManager.StationLocationHashmap.get(currentSRI.getStationCode());
+                
+                POI currentPOI = new POI(gsli.position.y, gsli.position.x, "Destination");
+                currentPOI.nodeType = Point.NodeType.NODE;
+                currentPOI.pointColor = Color.BLUE;
+                currentPOI.pointSize = 30;
+                addPOI(currentPOI);
+            }
             
             previousSRI = currentSRI;
         }
@@ -445,14 +445,18 @@ public class LTAMapMenu extends javax.swing.JFrame {
         {
             ptf = PathFindFactor.values()[jComboBox1.getSelectedIndex()];
             ArrayList<StationRouteInfo> info = LTAStar.FindPath(startStation, destStation, ptf);
-            PopulateRouteList(info);
-
-            ResetMap();
             
-            map.setViewAtPoint(LTAManager.StationLocationHashmap.get(startStation.GetID()).position);
+            if (info != null)
+            {
+                PopulateRouteList(info);
 
-            PlotRouteGraph(info, Color.BLUE, false);
-            PlotTransfer(info);
+                ResetMap();
+
+                map.setViewAtPoint(LTAManager.StationLocationHashmap.get(startStation.GetID()).position);
+
+                PlotRouteGraph(info, Color.BLUE, false);
+                PlotTransfer(info);
+            }
         }
     }//GEN-LAST:event_jPathFindActionPerformed
 

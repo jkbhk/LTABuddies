@@ -83,35 +83,35 @@ public final class LTAManager
         }
     }
     
-    public static void UpdateInt(ArrayList<StationRouteInfo> allSRI)    
-    {
-        ArrayList<StationRouteInfo> interchangeSRI = new ArrayList<>();
-        for(StationRouteInfo currentSRI : allSRI)
-        {
-            GenericStation currentGS = GetGenericStation(currentSRI.getStationCode());
-            
-            if (currentGS.name.toLowerCase().contains("int"))
-            {
-                interchangeSRI.add(currentSRI);
-            }
-        }
-        
-        for(StationRouteInfo firstSRI : interchangeSRI)
-        {                
-            GenericStation firstGS = GetGenericStation(firstSRI.getStationCode());
-            
-            for(StationRouteInfo nextSRI : interchangeSRI)
-            {
-                GenericStation nextGS = GetGenericStation(firstSRI.getStationCode());
-                
-                if(!firstSRI.equals(nextSRI) && firstGS.GetName().toLowerCase().equals(nextGS.GetName().toLowerCase()))
-                {
-                    firstGS.AddStationRouteInfo(new StationRouteInfo(firstSRI, nextGS.GetID()));
-                    nextGS.AddStationRouteInfo(new StationRouteInfo(nextSRI, firstGS.GetID()));
-                }
-            }
-        }
-    }
+//    public static void UpdateInt(ArrayList<StationRouteInfo> allSRI)    
+//    {
+//        ArrayList<StationRouteInfo> interchangeSRI = new ArrayList<>();
+//        for(StationRouteInfo currentSRI : allSRI)
+//        {
+//            GenericStation currentGS = GetGenericStation(currentSRI.getStationCode());
+//            
+//            if (currentGS.name.toLowerCase().contains("int"))
+//            {
+//                interchangeSRI.add(currentSRI);
+//            }
+//        }
+//        
+//        for(StationRouteInfo firstSRI : interchangeSRI)
+//        {                
+//            GenericStation firstGS = GetGenericStation(firstSRI.getStationCode());
+//            
+//            for(StationRouteInfo nextSRI : interchangeSRI)
+//            {
+//                GenericStation nextGS = GetGenericStation(firstSRI.getStationCode());
+//                
+//                if(!firstSRI.equals(nextSRI) && firstGS.GetName().toLowerCase().equals(nextGS.GetName().toLowerCase()))
+//                {
+//                    firstGS.AddStationRouteInfo(new StationRouteInfo(firstSRI, nextGS.GetID()));
+//                    nextGS.AddStationRouteInfo(new StationRouteInfo(nextSRI, firstGS.GetID()));
+//                }
+//            }
+//        }
+//    }
     
     public static Service GetService(String serviceNo)
     {
