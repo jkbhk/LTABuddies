@@ -58,6 +58,11 @@ public final class LTAStar
                         {
                             // Bus Travel Time
                             newDistFromStartCost += GetDistance(currentRouteInfo, nextStationRouteInfo)/ (busSpeed/60.0);
+                            
+                            if (currentStation.parentInfo != null && !currentRouteInfo.getServiceNo().equals(currentStation.parentInfo.getServiceNo()))
+                            {
+                            newDistFromStartCost += transferTime;
+                            }
                         }
                         // Transfer Time
                         newDistFromStartCost += stationStopTime;
