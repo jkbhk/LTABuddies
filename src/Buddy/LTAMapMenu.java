@@ -349,7 +349,7 @@ public class LTAMapMenu extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jResetButton)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         mapPanel.setOpaque(false);
@@ -620,6 +620,7 @@ public class LTAMapMenu extends javax.swing.JFrame {
      * @param segments the collection of segments to add
      *
      */
+    
     public void addSegments(Collection<Segment> segments) {
 
         map.addSegments(segments);
@@ -634,6 +635,7 @@ public class LTAMapMenu extends javax.swing.JFrame {
      * @param poi the POI to add
      *
      */
+    
     public void addPOI(POI poi) {
 
         map.addPOI(poi);

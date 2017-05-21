@@ -89,7 +89,7 @@ public final class LTAManager
         }
         else
         {
-            System.out.println("Invalid Station Code");
+            //System.out.println("Invalid Station Code");
             return null;
         }
     }
@@ -132,7 +132,7 @@ public final class LTAManager
         }
         else
         {
-            System.out.println("Invalid Service Code");
+            //System.out.println("Invalid Service Code");
             return null;
         }
     }
@@ -156,7 +156,7 @@ public final class LTAManager
         }
         else
         {
-            System.out.println("Invalid Service No");
+            //System.out.println("Invalid Service No");
             return null;
         }
 

@@ -24,7 +24,7 @@ public class LTASearchMenu extends javax.swing.JFrame {
     private enum Mode {INFO,SELECTION};
     private Mode mode;
     private DefaultListModel listModel = new DefaultListModel();
-    private final int minSearchLength = 0;
+    //private final int minSearchLength = 0;
     
     /**
      * Creates new form LTASearchMenu
@@ -61,7 +61,7 @@ public class LTASearchMenu extends javax.swing.JFrame {
     private void FilterSearch()
     {   
         
-        System.out.println(jTextField1.getText());
+        //System.out.println(jTextField1.getText());
         
         listModel = new DefaultListModel();
         for(GenericStation gs : LTAManager.StationHashmap.values())

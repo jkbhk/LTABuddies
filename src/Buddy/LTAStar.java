@@ -12,7 +12,7 @@ public final class LTAStar
     public static ArrayList<StationRouteInfo> FindPath(GenericStation start, GenericStation end, PathFindFactor selectedFactor)
     {
         start.startCost = 0;
-        System.out.println("Start");
+        //System.out.println("Start");
         boolean isFound = false;
         
         PriorityQueue<GenericStation> openSet = new PriorityQueue<>();
@@ -27,7 +27,7 @@ public final class LTAStar
             
             if (currentStation == end)
             {
-                System.out.println("Found");
+                //System.out.println("Found");
                 isFound = true;
                 break;
             }
@@ -106,15 +106,15 @@ public final class LTAStar
                 }
             }
         }
-        System.out.println("ED");
+        //System.out.println("ED");
        
         
         if(isFound)
         { 
             ArrayList<GenericStation> path;
-            System.out.println("GetPath");
+            //System.out.println("GetPath");
             path = GetPath(start, end);
-            System.out.println("End");
+            //System.out.println("End");
             
             ArrayList<StationRouteInfo> pathInfo = GetPathInfo(path);
             
@@ -166,10 +166,10 @@ public final class LTAStar
         }
         path.add(currentStation);
         
-        for(GenericStation gs : path)
-        {
-            System.out.println(gs.name);
-        }
+//        for(GenericStation gs : path)
+//        {
+//            System.out.println(gs.name);
+//        }
         
         return path;
     }

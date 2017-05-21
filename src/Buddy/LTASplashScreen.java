@@ -95,7 +95,7 @@ public class LTASplashScreen extends javax.swing.JFrame {
         try 
             {
             TimeUnit.SECONDS.sleep(SPLASH_DELAY);
-            System.out.println("\"initialized\"");
+            //System.out.println("\"initialized\"");
             } catch (InterruptedException ex)
             {
                 Logger.getLogger(LTASplashScreen.class.getName()).log(Level.SEVERE, null, ex);
