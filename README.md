@@ -1,2 +1,8 @@
+#LTA Buddy
+A tracking application for buses in Singapore.
 
-A tracking application for buses in Singapore. Built this with my good friend Jonathan.
+##Project members
+Yue Peng
+Jonathan
+
+##Screenshots
