@@ -1,8 +1,11 @@
-#LTA Buddy
-A tracking application for buses in Singapore.
+# About
+An application that tracks buses and their routes in Singapore.
 
-##Project members
-Yue Peng
-Jonathan
 
-##Screenshots
+# Project Members:
+Looi Yue Peng<br>
+Jonathan Yeo<br>
+
+# Screenshots
+
+
