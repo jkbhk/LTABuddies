@@ -1,2 +1,11 @@
+# About
+An application that tracks buses and their routes in Singapore.
 
-A tracking application for buses in Singapore. Built this with my good friend Jonathan.
+
+# Project Members:
+Looi Yue Peng<br>
+Jonathan Yeo<br>
+
+# Screenshots
+
+
