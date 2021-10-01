@@ -7,5 +7,5 @@ Looi Yue Peng<br>
 Jonathan Yeo<br>
 
 # Screenshots
-
+![image](https://github.com/jkbhk/LTABuddies/edit/master/screenshots/1.png)
 
